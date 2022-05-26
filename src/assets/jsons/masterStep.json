@@ -1,0 +1,260 @@
+[
+  {
+    "title": "  What are you planning to build?",
+    "description": "Type of application do you want to build",
+    "options": [
+      {
+        "id": 1210,
+        "title": "Web App",
+        "description": "Suitable if you're planning to build a SaaS application, streaming service, goverment projects and others."
+      },
+      {
+        "id": 1211,
+        "title": "Mobile App",
+        "description": "Serve your customers with a native experience of your service on their devices, including games."
+      },
+      {
+        "id": 1212,
+        "title": "Desktop App",
+        "description": "Mostly used by enterprises, like CRM, ERP, CMS where clients can manage their data on their self-hosted system."
+      }
+    ]
+  },
+  {
+    "title": "  What do you plan to offer?",
+    "description": "Domain area of your application will cover",
+    "options": [
+      {
+        "id": 99012321,
+        "title": "Client Facing Interface",
+        "description": "direct interaction or communication with a customer and customers use to connect and engage with your business"
+      },
+      {
+        "title": "Admin Interface (CRM/CMS)",
+        "description": "Admin can control the entire application"
+      }
+    ]
+  },
+  {
+    "title": "Choose Client Facing Interface type",
+    "description": "Describe the interface type of your application",
+    "options": [
+      {
+        "title": "Single-Page App (Recommended)",
+        "description": "dynamically rewriting the current web page with new data from the web server instead of loading"
+      },
+      {
+        "title": "Multi-Page App",
+        "description": "Multi-page Application is a web application consisting of a large number of pages completely refreshed every time when data changes on them"
+      },
+      {
+        "title": "Progressive Web App",
+        "description": "Progressive Web Apps combine many of the advantages of native apps and the Web"
+      }
+    ]
+  },
+  {
+    "title": "Choose Client Facing Interface features",
+    "description": "Describe the details about features",
+    "options": [
+      {
+        "title": "User Management",
+        "description": "List of features that maintain the users",
+        "opExtras": [
+          {
+            "title": "Email Sign-up/Sign-In",
+            "description": "(Allow users to sign-up/sign-in to your platform using their email)"
+          },
+          {
+            "title": "Phone Number Sign-up/Sign-in",
+            "description": "(Allow users to sign-up/sign-in to your platform using their phone no)"
+          },
+          {
+            "title": "Username Sign-up/Sign-in",
+            "description": "(Allow users to sign-up/sign-in to your platform using their username)"
+          },
+          {
+            "title": "OTP Verification",
+            "description": "(Authenticate real users vs bots based on email/phone OTP verification)"
+          },
+          {
+            "title": "Single-Sign-On",
+            "description": "(allows a user to log in with a single ID to any of several related)"
+          },
+          {
+            "title": "Password Generator",
+            "description": "(Allow use to generate password by system)"
+          },
+          {
+            "title": "Password reset",
+            "description": "(Allow user to reset their password)"
+          },
+          {
+            "title": "reCAPTCHA",
+            "description": "(Allow user to verify identity using captcha)"
+          }
+        ]
+      },
+      {
+        "title": "Social Media Features",
+        "description": "List of features that will enrich the social media",
+        "opExtras": [
+          {
+            "title": "Follow/Unfollow/Connect",
+            "description": "(Allow users to follow/unfollow/connect to others)"
+          },
+          {
+            "title": "Media & Content Sharing",
+            "description": "(Allow users to sharing their content,post,images,videos)"
+          },
+          {
+            "title": "Reactions",
+            "description": "(Allow others to react their content)"
+          },
+          {
+            "title": "descriptioning",
+            "description": "(Allow users to description their sharing items or content)"
+          },
+          {
+            "title": "In-App Sharing",
+            "description": "(Allow users to description their sharing app)"
+          },
+          {
+            "title": "Multi-Platform Sharing",
+            "description": "(Allow users to description their sharing app)"
+          }
+        ]
+      },
+      {
+        "title": "In-App Messaging",
+        "description": "Enable option to messaging with others",
+        "opExtras": [
+          {
+            "title": "Text Messaging",
+            "description": "(Allow users to text messaging with others)"
+          },
+          {
+            "title": "Media Sharing",
+            "description": "(Allow users to sharing their content,post,images,videos with others)"
+          },
+          {
+            "title": "Reactions",
+            "description": "(Allow others to enable reactions their messages)"
+          },
+          {
+            "title": "Email Messaging",
+            "description": "(Allow users to establish communication via Email messaging)"
+          }
+        ]
+      },
+      {
+        "title": "Responsive UI",
+        "description": "Make the UI comfortable with devices screen"
+      },
+      {
+        "title": "Multi-Tab feature",
+        "description": "Multiple tab features around the application"
+      },
+      {
+        "title": "In-App Purchase",
+        "description": "Describe how the application will be purchases",
+        "opExtras": [
+          {
+            "title": "Subscription",
+            "description": "(Allow users to subscribe their app)"
+          },
+          {
+            "title": "Single Product Purchase",
+            "description": "(Allow users to purchase directly)"
+          },
+          {
+            "title": "Discount",
+            "description": "(Offering discout to buy their product)"
+          },
+          {
+            "title": "Coupon",
+            "description": "(Make coupon to cut off prices)"
+          },
+          {
+            "title": "Affiliation",
+            "description": "(Campaign affiliation program to increasing purchase)"
+          }
+        ]
+      },
+      {
+        "title": "Payment options",
+        "description": "Setup payment options for entire application",
+        "opExtras": [
+          {
+            "title": "Apple Pay",
+            "description": "(Allow users to receive appears on your Apple Cash card in Wallet.)"
+          },
+          {
+            "title": "Google Pay",
+            "description": "(Allow users to pay by google pay)"
+          },
+          {
+            "title": "PayPal",
+            "description": "(Allow user to pay with paypal)"
+          },
+          {
+            "title": "Credit/Debit Card",
+            "description": "(Allow users to pay using their credit/debit card)"
+          },
+          {
+            "title": "Wire Transfer",
+            "description": "(Allow user to transferring funds by wire)"
+          },
+          {
+            "title": "Save Payment Information",
+            "description": "(Allow user to save payment information)"
+          }
+        ]
+      },
+      {
+        "title": "In-App Advertising",
+        "description": "The feature to show personalised ads to your users",
+        "options": [
+          {
+            "title": "Third-Party Ads",
+            "description": "Setup location service options to the application"
+          },
+          {
+            "title": "Self-Hosted Ads",
+            "description": "Setup location service options to the application"
+          }
+        ]
+      },
+      {
+        "title": "Location Services",
+        "description": "Setup location service options to the application",
+        "opExtras": [
+          {
+            "title": "Geolocation Service",
+            "description": "(the process of determining the location of a computer, phone, or other network-based devices)"
+          },
+          {
+            "title": "Google Maps",
+            "description": "(Google Maps is a web mapping platform and consumer application offered by Google. It offers satellite imagery, aerial photography, street maps)"
+          },
+          {
+            "title": "Apple Maps",
+            "description": "(Allow user to setting up apple map in their apps)"
+          },
+          {
+            "title": "Bing Maps",
+            "description": "(Allow user to setting up bing map in their apps)"
+          },
+          {
+            "title": "OpenStreetMap",
+            "description": "(Allow user to o create a free editable geographic database of the world)"
+          },
+          {
+            "title": "Waze",
+            "description": "(Realtime driving directions based on live traffic updates from Waze - Get the best route to your destination from fellow drivers.)"
+          }
+        ]
+      }
+    ]
+  }
+]

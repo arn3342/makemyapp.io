@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card, Input, Spacer, SubTitle, Title } from '../global/global'
 import '../global/global.css'
 import { faDesktop, faGlobe, faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -12,6 +12,8 @@ export const Choice = ({ title, description, id, itemSize }) => {
   function performSelection () {
     setSelected(!selected)
   }
+  useEffect(() => {
+  })
   return (
     <>
       {itemSize !== 'compact' ? (
@@ -73,13 +75,17 @@ export const Choice = ({ title, description, id, itemSize }) => {
 }
 
 export const ChoiceList = ({
-  options = [],
+  options,
   title,
   description,
   allowSearch,
   itemSize
 }) => {
-  const [dataSource, setDataSource] = useState(options)
+  const [filteredDataSource, setFilteredData] = useState([])
+  useState(() => {
+    // setDataSource(options)
+    // console.log('Options are:', title)
+  }, [])
   return (
     <div className='container'>
       <div className='row cols-2'>
@@ -96,7 +102,7 @@ export const ChoiceList = ({
                   icon={faSearch}
                   placeholder='Search features...'
                   onValueChange={value =>
-                    setDataSource(filterData(options, value))
+                    setFilteredData(filterData(options, value))
                   }
                 />
               </div>
@@ -105,8 +111,10 @@ export const ChoiceList = ({
           </div>
         )}
         <div className='row'>
-          {dataSource.map(item => {
-            return <Choice {...item} itemSize={itemSize} />
+          {filteredDataSource?.length <= 0 ? options.map((item, index) => {
+            return <Choice {...item} itemSize={itemSize} key={index}/>
+          }) : filteredDataSource.map((item, index) => {
+            return <Choice {...item} itemSize={itemSize} key={index}/>
           })}
         </div>
       </div>

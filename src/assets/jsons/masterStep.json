@@ -21,15 +21,16 @@
     ]
   },
   {
-    "title": "  What do you plan to offer?",
+    "title": "What do you plan to offer?",
     "description": "Domain area of your application will cover",
     "options": [
       {
-        "id": 99012321,
+        "id": 1411,
         "title": "Client Facing Interface",
         "description": "direct interaction or communication with a customer and customers use to connect and engage with your business"
       },
       {
+        "id": 1412,
         "title": "Admin Interface (CRM/CMS)",
         "description": "Admin can control the entire application"
       }

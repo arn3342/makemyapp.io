@@ -23,5 +23,5 @@ export function filterData (source = [], query = '', ingoreProps = []) {
       })
     })
   }
-  return query.length > 0 ? filteredList : source
+  return query.length > 0 ? filteredList : []
 }

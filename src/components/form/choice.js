@@ -1,18 +1,34 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
-import { Card, Input, Spacer, SubTitle, Title } from '../global/global'
+import { Button, Card, Input, Spacer, SubTitle, Title } from '../global/global'
 import '../global/global.css'
-import { faDesktop, faGlobe, faSearch } from '@fortawesome/free-solid-svg-icons'
+import {
+  faAngleRight,
+  faDesktop,
+  faGlobe,
+  faSearch
+} from '@fortawesome/free-solid-svg-icons'
 import { filterData } from '../../misc/logics'
 import IconParser from '../../misc/iconParser'
 
-export const Choice = ({ title, description, id, itemSize }) => {
-  const [selected, setSelected] = useState(false)
+export const Choice = ({
+  title,
+  description,
+  id,
+  itemSize,
+  options,
+  onSelect,
+  isSelected
+}) => {
+  const [selected, setSelected] = useState(isSelected)
 
   function performSelection () {
+    // console.log('Called selected')
+    onSelect(!selected)
     setSelected(!selected)
   }
   useEffect(() => {
+    isSelected && console.log('selected state is:', isSelected, ' and id is:', id)
   })
   return (
     <>
@@ -38,6 +54,15 @@ export const Choice = ({ title, description, id, itemSize }) => {
             <div className='row'>
               <SubTitle content={description} />
             </div>
+            {options?.length > 0 && (
+              <div className='row'>
+                <SubTitle
+                  className='link'
+                  fontType='bold'
+                  content={`${options.length - 1}+ Features Available`}
+                />
+              </div>
+            )}
           </Card>
           <Spacer size='medium' />
         </div>
@@ -66,6 +91,12 @@ export const Choice = ({ title, description, id, itemSize }) => {
                 <SubTitle content={description} />
               </div>
             </div>
+            <div className='row cols-2'>
+              <div className='col col-sm-2' />
+              <div className='col'>
+                <SubTitle content={`${options.length}+ choices`} />
+              </div>
+            </div>
           </Card>
           <Spacer size='medium' />
         </div>
@@ -79,13 +110,21 @@ export const ChoiceList = ({
   title,
   description,
   allowSearch,
-  itemSize
+  itemSize,
+  handleSubmit
 }) => {
   const [filteredDataSource, setFilteredData] = useState([])
-  useState(() => {
-    // setDataSource(options)
-    // console.log('Options are:', title)
-  }, [])
+  const [selectedData, setSelectedData] = useState([])
+
+  function performSelection (selected, id) {
+    let selections = [...selectedData]
+    if (selected) {
+      selections.push(id)
+    } else {
+      selections = selections.filter(x => x != id)
+    }
+    setSelectedData(selections)
+  }
   return (
     <div className='container'>
       <div className='row cols-2'>
@@ -96,26 +135,56 @@ export const ChoiceList = ({
               <SubTitle content={description} size='large' fontType='light' />
               <Spacer size='medium' />
             </div>
-            {allowSearch && (
-              <div className='col col-sm-4'>
-                <Input
-                  icon={faSearch}
-                  placeholder='Search features...'
-                  onValueChange={value =>
-                    setFilteredData(filterData(options, value))
-                  }
+
+            <div className='row cols-2'>
+              {allowSearch && (
+                <div className='col col-sm-4'>
+                  <Input
+                    icon={faSearch}
+                    placeholder='Search features...'
+                    onValueChange={value =>
+                      setFilteredData(filterData(options, value))
+                    }
+                  />
+                </div>
+              )}
+              <div className='col col-sm-1 d-flex'>
+                <Button
+                  label='Save & Proceed'
+                  isExtraSmall
+                  theme='dark'
+                  animateScale={true}
+                  icon={faAngleRight}
+                  // canBeBusy
+                  onClick={() => handleSubmit(selectedData)}
                 />
               </div>
-            )}
+            </div>
             <Spacer size='small' />
           </div>
         )}
         <div className='row'>
-          {filteredDataSource?.length <= 0 ? options.map((item, index) => {
-            return <Choice {...item} itemSize={itemSize} key={index}/>
-          }) : filteredDataSource.map((item, index) => {
-            return <Choice {...item} itemSize={itemSize} key={index}/>
-          })}
+          {filteredDataSource?.length <= 0
+            ? options.map((item, index) => {
+                return (
+                  <Choice
+                    {...item}
+                    key={item.id}
+                    onSelect={selected => performSelection(selected, item.id)}
+                    isSelected={selectedData.includes(item.id)}
+                  />
+                )
+              })
+            : filteredDataSource.map((item, index) => {
+                return (
+                  <Choice
+                    {...item}
+                    key={item.id}
+                    onSelect={selected => performSelection(selected, item.id)}
+                    isSelected={selectedData.includes(item.id)}
+                  />
+                )
+              })}
         </div>
       </div>
     </div>

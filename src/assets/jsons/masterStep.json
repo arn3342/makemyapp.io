@@ -61,7 +61,7 @@
       {
         "title": "User Management",
         "description": "List of features that maintain the users",
-        "opExtras": [
+        "options": [
           {
             "title": "Email Sign-up/Sign-In",
             "description": "(Allow users to sign-up/sign-in to your platform using their email)"
@@ -99,7 +99,7 @@
       {
         "title": "Social Media Features",
         "description": "List of features that will enrich the social media",
-        "opExtras": [
+        "options": [
           {
             "title": "Follow/Unfollow/Connect",
             "description": "(Allow users to follow/unfollow/connect to others)"
@@ -129,7 +129,7 @@
       {
         "title": "In-App Messaging",
         "description": "Enable option to messaging with others",
-        "opExtras": [
+        "options": [
           {
             "title": "Text Messaging",
             "description": "(Allow users to text messaging with others)"
@@ -159,7 +159,7 @@
       {
         "title": "In-App Purchase",
         "description": "Describe how the application will be purchases",
-        "opExtras": [
+        "options": [
           {
             "title": "Subscription",
             "description": "(Allow users to subscribe their app)"
@@ -185,7 +185,7 @@
       {
         "title": "Payment options",
         "description": "Setup payment options for entire application",
-        "opExtras": [
+        "options": [
           {
             "title": "Apple Pay",
             "description": "(Allow users to receive appears on your Apple Cash card in Wallet.)"
@@ -229,7 +229,7 @@
       {
         "title": "Location Services",
         "description": "Setup location service options to the application",
-        "opExtras": [
+        "options": [
           {
             "title": "Geolocation Service",
             "description": "(the process of determining the location of a computer, phone, or other network-based devices)"

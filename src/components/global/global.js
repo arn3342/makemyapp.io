@@ -59,15 +59,27 @@ export const Title = ({
   )
 }
 
-export const SubTitle = ({ content, style, theme, size, link, fontType }) => {
+export const SubTitle = ({
+  content,
+  style,
+  theme,
+  size,
+  link,
+  fontType,
+  className,
+}) => {
   return size === 'large' ? (
-    <h5 className={`title ${fontType}`}>{content}</h5>
+    <h5 className={`title ${fontType} ${className}`} style={style}>
+      {content}
+    </h5>
   ) : (
-    <p className={`title ${fontType}`}>{content}</p>
+    <p className={`title ${fontType} ${className}`} style={style}>
+      {content}
+    </p>
   )
 }
 
-export function Card ({ children, theme, size }) {
+export function Card ({ children, theme, size, id }) {
   return (
     <div className={`card card_${theme} shadow_light card_${size}`}>
       {children}
@@ -122,7 +134,10 @@ export const Button = ({
           />
         </div>
       ) : (
-        <div className='spinner-border text-light spinner_small' role='status' />
+        <div
+          className='spinner-border text-light spinner_small'
+          role='status'
+        />
       )}
     </div>
   )

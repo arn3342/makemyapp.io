@@ -351,10 +351,14 @@ export const SliderModal = ({
       choiceContainer?.classList.remove('dim_opacity')
     }
   })
-  function handleSubmit (data) {
-    setTimeout(() => {
+  function handleSubmit (shouldWait) {
+    if (shouldWait) {
+      setTimeout(() => {
+        onClose()
+      }, 1500)
+    } else {
       onClose()
-    }, 1500)
+    }
   }
   return (
     <div className={`modal_slider ${!isOpen && 'modal_hidden'}`}>
@@ -365,10 +369,14 @@ export const SliderModal = ({
           <Spacer />
           <Title
             size='large'
-            content={`${title} ${!title.toLowerCase().includes('features') ? 'Features' : ''}`}
+            content={`${title} ${
+              !title.toLowerCase().includes('features') ? 'Features' : ''
+            }`}
           />
           <SubTitle
-            content={`Enrich your app with industry-standard ${title} ${!title.toLowerCase().includes('features') ? 'features' : ''}. 
+            content={`Enrich your app with industry-standard ${title} ${
+              !title.toLowerCase().includes('features') ? 'features' : ''
+            }. 
             More than ${options.length -
               1} customizable features are available.`}
             size='regular'
@@ -377,16 +385,27 @@ export const SliderModal = ({
           <Spacer />
           <div className='choice_extra-small_container d-flex'>
             {options?.map(item => {
-              return <SimpleChoice title={item.title} key={item.id || getRndInteger(988, 12388)}/>
+              return (
+                <SimpleChoice
+                  title={item.title}
+                  key={item.id || getRndInteger(988, 12388)}
+                />
+              )
             })}
           </div>
           <Spacer />
           <Button
-            label='Save & Close'
+            label='Add Features'
             theme='dark'
             animateScale={true}
             canBeBusy
-            onClick={() => handleSubmit()}
+            onClick={() => handleSubmit(true)}
+            key={getRndInteger(99, 88738)}
+          />
+          <Spacer />
+          <Button
+            label='Close'
+            onClick={() => handleSubmit(false)}
             key={getRndInteger(99, 88738)}
           />
         </div>

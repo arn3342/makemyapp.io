@@ -98,6 +98,7 @@
         ]
       },
       {
+        "id": 1512,
         "title": "Social Media Features",
         "description": "List of features that will enrich the social media",
         "options": [
@@ -128,6 +129,7 @@
         ]
       },
       {
+        "id": 1513,
         "title": "In-App Messaging",
         "description": "Enable option to messaging with others",
         "options": [
@@ -150,6 +152,7 @@
         ]
       },
       {
+        "id": 1514,
         "title": "Responsive UI",
         "description": "Make the UI comfortable with devices screen"
       },

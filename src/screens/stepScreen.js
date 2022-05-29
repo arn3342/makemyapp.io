@@ -33,17 +33,19 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
     setCurrentData(currentStepData)
   }
 
-  function getOptions (id) {
+  function getFeatureById (id) {
     const options = masterData[currentStepIndex].options.find(
       item => item.id == id
-    ).options
+    )
     return options
   }
 
   function performShowModal (id) {
+    const data = getFeatureById(id)
+    console.log(data)
     setModalProps({
       isOpen: true,
-      options: getOptions(id)
+      data
     })
   }
   function performClose () {
@@ -55,7 +57,7 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
     <div>
       <SliderModal
         isOpen={modalProps.isOpen}
-        options={modalProps.options}
+        {...modalProps && modalProps.data}
         onClose={() => performClose()}
       />
       {currentData && (

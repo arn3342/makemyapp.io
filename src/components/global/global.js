@@ -166,15 +166,17 @@ export const Button = ({
       {!isLoading ? (
         <div className='d-flex'>
           <span>{label}</span>
-          {icon && <FontAwesomeIcon
-            className={animateIcon && 'icon_hidden'}
-            icon={icon}
-            fontSize={16}
-            fill='#000'
-            style={{
-              marginLeft: '10px'
-            }}
-          />}
+          {icon && (
+            <FontAwesomeIcon
+              className={animateIcon && 'icon_hidden'}
+              icon={icon}
+              fontSize={16}
+              fill='#000'
+              style={{
+                marginLeft: '10px'
+              }}
+            />
+          )}
         </div>
       ) : (
         <div
@@ -333,7 +335,13 @@ export const SwitchButton = ({ onCheckChanged, label, onCheckRender }) => {
   )
 }
 
-export const SliderModal = ({ isOpen, options = [], onClose }) => {
+export const SliderModal = ({
+  isOpen,
+  title = '',
+  description = '',
+  options = [],
+  onClose
+}) => {
   // const [show, setShow] = useState(isOpen)
   useEffect(() => {
     const choiceContainer = document.getElementById('choise-list-container')
@@ -343,10 +351,10 @@ export const SliderModal = ({ isOpen, options = [], onClose }) => {
       choiceContainer?.classList.remove('dim_opacity')
     }
   })
-  function handleSubmit(data){
+  function handleSubmit (data) {
     setTimeout(() => {
       onClose()
-    }, 1500) 
+    }, 1500)
   }
   return (
     <div className={`modal_slider ${!isOpen && 'modal_hidden'}`}>
@@ -355,17 +363,21 @@ export const SliderModal = ({ isOpen, options = [], onClose }) => {
         <div className='col' />
         <div className='col col-sm-5 modal_slider_container shadow_dark '>
           <Spacer />
-          <Title size='large' content='User Management Features' />
+          <Title
+            size='large'
+            content={`${title} ${!title.toLowerCase().includes('features') ? 'Features' : ''}`}
+          />
           <SubTitle
-            content='Enrich your app with industry-standard user management features. 
-            More than 7 customizable features are available.'
+            content={`Enrich your app with industry-standard ${title} ${!title.toLowerCase().includes('features') ? 'features' : ''}. 
+            More than ${options.length -
+              1} customizable features are available.`}
             size='regular'
             fontType='light'
           />
           <Spacer />
           <div className='choice_extra-small_container d-flex'>
             {options?.map(item => {
-              return <SimpleChoice title={item.title} />
+              return <SimpleChoice title={item.title} key={item.id || getRndInteger(988, 12388)}/>
             })}
           </div>
           <Spacer />
@@ -375,6 +387,7 @@ export const SliderModal = ({ isOpen, options = [], onClose }) => {
             animateScale={true}
             canBeBusy
             onClick={() => handleSubmit()}
+            key={getRndInteger(99, 88738)}
           />
         </div>
       </div>

@@ -7,7 +7,7 @@ import { TiGroupOutline } from 'react-icons/ti'
 
 const IconParser = ({ itemId }) => {
   let icon = <BsQuestion fontSize={20} />
-  console.log(itemId)
+  // console.log(itemId)
   switch (itemId) {
     case 112:
       icon = <CgFacebook fontSize={20} />

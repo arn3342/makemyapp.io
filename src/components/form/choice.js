@@ -119,10 +119,14 @@ export const Choice = ({
   return <>{itemSize === 'compact' ? <Choice_Compact /> : <Choice_Regular />}</>
 }
 
-export const SimpleChoice = ({ title, id }) => {
+export const SimpleChoice = ({ title, id, onSelect }) => {
   const [isSelected, setSelected] = useState(false)
+  function performSelection(){
+    setSelected(!isSelected);
+    onSelect(!isSelected)
+  }
   return (
-    <div className={`choice_extra-small ${isSelected && 'choice_selected'}`} onClick={() => setSelected(!isSelected)}>
+    <div className={`choice_extra-small ${isSelected && 'choice_selected'}`} onClick={() => performSelection()}>
       <SubTitle
         fontType='bold'
         content={title}

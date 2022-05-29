@@ -178,7 +178,7 @@ i {
   /* color: #fff; */
 }
 .card:hover p, h1, h2, h3, h4, h5, h6 {
-  /* color: #fff; */
+  color: #fff;
 }
 .card_compact {
   padding: 8px 10px;

@@ -8,7 +8,6 @@ import {
   faL,
   faLaptopHouse
 } from '@fortawesome/free-solid-svg-icons'
-import appTypes from '../../assets/jsons/appTypes.json'
 
 export const Header = ({ spacing }) => {
   useEffect(() => {})
@@ -17,7 +16,7 @@ export const Header = ({ spacing }) => {
     <div className={`menu_sticky spacing_${spacing} d-flex`}>
       <div className='container m-auto'>
         <Spacer size='small' />
-        <div className='row cols-2 shadow_light menu_container'>
+        <div className='row cols-2 menu_container'>
           <div className='col' style={{ textAlign: 'left' }}>
             <img src={Logo} className='site_logo' />
           </div>
@@ -34,24 +33,49 @@ export const Title = ({
   size,
   link,
   fontType,
-  className
+  className,
+  animate
 }) => {
   return (
     <a href={link}>
       {size === 'small' ? (
-        <h6 className={`title ${theme} ${fontType} ${className}`} style={style}>
+        <h6
+          className={`title theme_${theme} size_${fontType} ${className} ${animate &&
+            'focus-in-expand'}`}
+          style={style}
+        >
           {content}
         </h6>
       ) : size === 'large' ? (
-        <h4 className={`title ${theme} ${fontType} ${className}`} style={style}>
+        <h4
+          className={`title theme_${theme} size_${fontType} ${className} ${animate &&
+            'focus-in-expand'}`}
+          style={style}
+        >
           {content}
         </h4>
       ) : size === 'large-2' ? (
-        <h2 className={`title ${theme} ${fontType} ${className}`} style={style}>
+        <h2
+          className={`title theme_${theme} size_${fontType} ${className} ${animate &&
+            'focus-in-expand'}`}
+          style={style}
+        >
           {content}
         </h2>
+      ) : size === 'large-3' ? (
+        <h1
+          className={`title theme_${theme} size_${fontType} ${className}  ${animate &&
+            'focus-in-expand'} large_3`}
+          style={style}
+        >
+          {content}
+        </h1>
       ) : (
-        <h5 className={`title ${theme} ${fontType} ${className}`} style={style}>
+        <h5
+          className={`title theme_${theme} size_${fontType} ${className}  ${animate &&
+            'focus-in-expand'}`}
+          style={style}
+        >
           {content}
         </h5>
       )}
@@ -67,19 +91,36 @@ export const SubTitle = ({
   link,
   fontType,
   className,
+  animate
 }) => {
   return size === 'large' ? (
-    <h5 className={`title ${fontType} ${className}`} style={style}>
+    <h5
+      className={`title size_${fontType} theme_${theme} ${className} ${animate &&
+        'focus-in-expand'}`}
+      style={style}
+    >
       {content}
     </h5>
+  ) : size === 'medium' || size === 'regular' ? (
+    <h6
+      className={`title size_${fontType} theme_${theme} ${className} ${animate &&
+        'focus-in-expand'}`}
+      style={style}
+    >
+      {content}
+    </h6>
   ) : (
-    <p className={`title ${fontType} ${className}`} style={style}>
+    <p
+      className={`title size_${fontType} theme_${theme} ${className} ${animate &&
+        'focus-in-expand'}`}
+      style={style}
+    >
       {content}
     </p>
   )
 }
 
-export function Card ({ children, theme, size, id }) {
+export function Card ({ children, theme, size, id, className }) {
   return (
     <div className={`card card_${theme} shadow_light card_${size}`}>
       {children}
@@ -110,8 +151,8 @@ export const Button = ({
   }
   return (
     <div
-      className={`button_light ${isLoading ||
-        (theme === 'dark' && 'button_dark')} m-auto ${hasShadow &&
+      className={`button_light ${(isLoading || theme === 'dark') &&
+        'button_dark'} m-auto ${hasShadow &&
         'shadow'} button_size_${size} d-flex button_light_${isExtraSmall &&
         'extended'} ${animateIcon && 'icon_animated'} ${animateScale &&
         'scale_animated'}`}
@@ -185,7 +226,13 @@ export const Input = ({
   )
 }
 
-export const DropDown = ({ icon, placeholder, className, onValueChange }) => {
+export const DropDown = ({
+  icon,
+  placeholder,
+  className,
+  onValueChange,
+  options
+}) => {
   const [isFocused, setFocused] = useState(false)
   const [selectedValue, setSelectedValue] = useState(placeholder)
   function handleBlur (event) {
@@ -203,6 +250,9 @@ export const DropDown = ({ icon, placeholder, className, onValueChange }) => {
       tabIndex={1}
       onFocus={() => setFocused(true)}
       onBlur={event => handleBlur(event)}
+      style={{
+        padding: '0px'
+      }}
     >
       <div className={`input d-flex dropdown`}>
         {icon && (
@@ -226,7 +276,7 @@ export const DropDown = ({ icon, placeholder, className, onValueChange }) => {
           className={`row dropdown_container ${isFocused &&
             'container_visible'}`}
         >
-          {appTypes.map((value, index) => {
+          {options.map((value, index) => {
             return (
               <button
                 value={value}
@@ -251,7 +301,11 @@ export const SwitchButton = ({ onCheckChanged, label, onCheckRender }) => {
     onCheckChanged(value)
   }
   return (
-    <div>
+    <div
+      style={{
+        padding: '0'
+      }}
+    >
       <div className='form-check form-switch d-flex'>
         <input
           className='form-check-input'
@@ -272,6 +326,20 @@ export const SwitchButton = ({ onCheckChanged, label, onCheckRender }) => {
         <Spacer size='small' />
       </div>
       {checked && <div className='row'>{onCheckRender}</div>}
+    </div>
+  )
+}
+
+export const SliderModal = ({}) => {
+  return (
+    <div className='modal_slider'>
+      <div className='row cols-3'>
+        <div className='col' />
+        <div className='col' />
+        <div className='col col-sm-5 modal_container'>
+          
+        </div>
+      </div>
     </div>
   )
 }

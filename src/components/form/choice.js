@@ -18,7 +18,8 @@ export const Choice = ({
   itemSize,
   options,
   onSelect,
-  isSelected
+  isSelected,
+  theme
 }) => {
   const [selected, setSelected] = useState(isSelected)
 
@@ -28,13 +29,14 @@ export const Choice = ({
     setSelected(!selected)
   }
   useEffect(() => {
-    isSelected && console.log('selected state is:', isSelected, ' and id is:', id)
+    // isSelected &&
+    //   console.log('selected state is:', isSelected, ' and id is:', id)
   })
   return (
     <>
       {itemSize !== 'compact' ? (
         <div className='col col-lg-3' onClick={() => performSelection()}>
-          <Card theme={selected && 'dark'}>
+          <Card theme={`${selected && 'dark'} theme_${theme}`}>
             <div className='row cols-3'>
               <div className='col col-sm-2 d-flex'>
                 <div className='icon_regular d-flex'>
@@ -54,21 +56,23 @@ export const Choice = ({
             <div className='row'>
               <SubTitle content={description} />
             </div>
-            {options?.length > 0 && (
-              <div className='row'>
-                <SubTitle
-                  className='link'
-                  fontType='bold'
-                  content={`${options.length - 1}+ Features Available`}
-                />
-              </div>
-            )}
+            <div className='row'>
+              <SubTitle
+                className='link'
+                fontType='bold'
+                content={
+                  options
+                    ? `${options.length - 1}+ Features Available`
+                    : 'No extra options'
+                }
+              />
+            </div>
           </Card>
           <Spacer size='medium' />
         </div>
       ) : (
         <div className='col col-lg-3' onClick={() => performSelection()}>
-          <Card theme={selected && 'dark'} size='compact'>
+          <Card theme={`${selected && 'dark'} theme_${theme}`} size='compact'>
             <div className='row cols-3'>
               <div className='col col-sm-2 d-flex'>
                 <div className='icon_regular d-flex icon_small'>
@@ -94,7 +98,16 @@ export const Choice = ({
             <div className='row cols-2'>
               <div className='col col-sm-2' />
               <div className='col'>
-                <SubTitle content={`${options.length}+ choices`} />
+                <SubTitle
+                  fontType='bold'
+                  className='card_option_bg'
+                  size='small'
+                  content={
+                    options
+                      ? `${options.length - 1}+ Features Available`
+                      : 'No extra options'
+                  }
+                />
               </div>
             </div>
           </Card>
@@ -111,7 +124,8 @@ export const ChoiceList = ({
   description,
   allowSearch,
   itemSize,
-  handleSubmit
+  handleSubmit,
+  theme
 }) => {
   const [filteredDataSource, setFilteredData] = useState([])
   const [selectedData, setSelectedData] = useState([])
@@ -131,8 +145,18 @@ export const ChoiceList = ({
         {title && description && (
           <div className='row'>
             <div className='col col-xl-10'>
-              <Title size='large-2' fontType='light' content={title} />
-              <SubTitle content={description} size='large' fontType='light' />
+              <Title
+                size='large-2'
+                fontType='light'
+                theme='light'
+                content={title}
+              />
+              <SubTitle
+                content={description}
+                size='large'
+                theme='light'
+                fontType='light'
+              />
               <Spacer size='medium' />
             </div>
 
@@ -151,7 +175,6 @@ export const ChoiceList = ({
               <div className='col col-sm-1 d-flex'>
                 <Button
                   label='Save & Proceed'
-                  isExtraSmall
                   theme='dark'
                   animateScale={true}
                   icon={faAngleRight}
@@ -163,6 +186,8 @@ export const ChoiceList = ({
             <Spacer size='small' />
           </div>
         )}
+        {/* <div className='col col-sm-4'> */}
+        <Spacer size='small'/>
         <div className='row'>
           {filteredDataSource?.length <= 0
             ? options.map((item, index) => {
@@ -172,6 +197,8 @@ export const ChoiceList = ({
                     key={item.id}
                     onSelect={selected => performSelection(selected, item.id)}
                     isSelected={selectedData.includes(item.id)}
+                    itemSize={itemSize}
+                    theme={theme}
                   />
                 )
               })
@@ -182,11 +209,14 @@ export const ChoiceList = ({
                     key={item.id}
                     onSelect={selected => performSelection(selected, item.id)}
                     isSelected={selectedData.includes(item.id)}
+                    itemSize={itemSize}
+                    theme={theme}
                   />
                 )
               })}
         </div>
       </div>
+      {/* </div> */}
     </div>
   )
 }

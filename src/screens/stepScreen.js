@@ -3,6 +3,7 @@ import { ChoiceList } from '../components/form/choice'
 import masterData from '../assets/jsons/masterStep.json'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import appListing from '../assets/jsons/appListing.json'
+import { SliderModal } from '../components/global/global'
 
 const StepScreen = ({ stepIndex, allowSearch }) => {
   const { state } = useLocation()
@@ -32,8 +33,10 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
       {currentData && (
         <ChoiceList
           {...currentData}
-          allowSearch={allowSearch || state.allowSearch}
+          allowSearch={currentStepIndex > 2}
+          itemSize={currentStepIndex > 2 && 'compact'}
           handleSubmit={selectedData => handleSubmit(selectedData)}
+          theme='light'
         />
       )}
     </div>

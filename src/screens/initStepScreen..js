@@ -13,70 +13,114 @@ import { ChoiceList } from '../components/form/choice'
 import { Player, Controls } from '@lottiefiles/react-lottie-player'
 import SplashAnim from '../assets/gifs/step_1.json'
 import { useNavigate } from 'react-router-dom'
+import appTypes from '../assets/jsons/appTypes.json'
+import buildingAnim from '../assets/gifs/building.json'
+import phoneAnim from '../assets/gifs/phone.json'
+
 const InitStepScreen = ({}) => {
   const [hasSimilarApps, setHasSimilarApps] = useState(false)
   const navigate = useNavigate()
 
   function handleSubmit () {
-    navigate('wizard', {
-      replace: true,
-      state: { stepIndex: hasSimilarApps ? - 1 : 0, allowSearch: true }
-    })
+    setTimeout(() => {
+      navigate('wizard', {
+        replace: true,
+        state: { stepIndex: hasSimilarApps ? -1 : 0, allowSearch: true }
+      })
+    }, 1500)
   }
 
   return (
-    <div className='container'>
-      {/* <div className='row cols-2' style={{
-          position: 'absolute'
-      }}>
-        <div className='col' />
+    <div
+      className='container'
+      style={{
+        overflow: 'hidden !important'
+      }}
+    >
+      <div className='row cols-3'>
         <div className='col'>
-          <Player src={SplashAnim} autoplay loop style={{
-              transform: 'scale(1.2)',
-              opacity: 0.3
-          }}/>
-        </div>
-      </div> */}
-      <div className='row cols-2'>
-        <div className='row'>
-          <Title size='large-2' fontType='light' content='The First Step...' />
-          <SubTitle
-            content="Let's get started with some basic information, starting with the name: "
+          {/* <SubTitle
             size='large'
+            theme='light'
             fontType='light'
+            content="Rome wasn't built in a day,"
+          /> */}
+          <Title
+            size='large'
+            theme='light'
+            fontType='light'
+            content="Rome wasn't built in a day,"
+            style={{
+              paddingLeft: '2px'
+            }}
           />
           <Spacer size='medium' />
-          <div className='row cols-2'>
-            <div className='col col-sm-4'>
+
+          <Title
+            size='large-3'
+            theme='light'
+            fontType='bold'
+            content='But Your App Can!'
+          />
+          <Spacer size='large' />
+          {/* <Title animate content='Introducing MakeMyApp.io' size='large' theme='light'/> */}
+          <Player
+            src={buildingAnim}
+            autoplay
+            loop
+            onEvent={ev => ev === 'loop' && console.log(ev)}
+            style={{
+              position: 'absolute',
+              zIndex: -2,
+              width: '40%',
+              top: '15%'
+              // left: '-4%'
+              // opacity: 0.2
+            }}
+          />
+        </div>
+        <div className='col  col-sm-1' />
+        <div className='col col-sm-5'>
+          <div className='row modal_container shadow'>
+            <Title
+              size='large-2'
+              fontType='light'
+              content='The First Step...'
+            />
+            <SubTitle
+              content="Let's get started with some basic information."
+              size='regular'
+              fontType='light'
+            />
+            <Spacer size='small' />
+
+            <div className='row d-flex'>
               <Input placeholder='Name of your project' />
               <Spacer size='small' />
-              <DropDown placeholder='Choose product type' />
+              <DropDown placeholder='Choose product type' options={appTypes} />
               <Spacer size='small' />
               <Input placeholder='A few lines about your idea' isMultiLine />
-              <Spacer size='medium' />
-              <SwitchButton
-                label='My similar idea exists'
-                onCheckChanged={val => setHasSimilarApps(val)}
-                onCheckRender={
-                  <SubTitle content='In the next page, you can select which popular app shares the same idea as yours. We will auto-fill other feature-selections for you!' />
-                }
+              <Spacer size='small' />
+              <DropDown
+                placeholder='My idea is unique and new'
+                options={[
+                  'My idea is unique and new',
+                  'Idea is similar to a popular app'
+                ]}
+              />
+            </div>
+            <Spacer size='medium' />
+            <div className='row d-flex'>
+              <Button
+                label='Save & Proceed'
+                theme='dark'
+                animateScale={true}
+                icon={faAngleRight}
+                canBeBusy
+                onClick={() => handleSubmit()}
               />
             </div>
           </div>
-          <Spacer size='medium' />
-        </div>
-      </div>
-      <div className='row'>
-        <div className='col col-sm-1 d-flex'>
-          <Button
-            label='Save & Proceed'
-            isExtraSmall
-            theme='dark'
-            animateScale={true}
-            icon={faAngleRight}
-            canBeBusy
-            onClick={() => handleSubmit()}
-          />
         </div>
       </div>
     </div>

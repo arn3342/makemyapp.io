@@ -1,5 +1,5 @@
 import './App.css'
-import { Header, Spacer } from './components/global/global'
+import { Header, SliderModal, Spacer } from './components/global/global'
 import 'bootstrap/dist/css/bootstrap.css'
 import { Choice, ChoiceList } from './components/form/choice'
 import { CgWebsite } from 'react-icons/cg'
@@ -18,8 +18,8 @@ function App () {
         <div className='row'>
           <Spacer size='large' />
           <Routes location={location}>
-            <Route path='/' element={<InitStepScreen/>}/>
-            <Route path='/wizard' element={<StepScreen/>}/>
+            <Route path='/' element={<InitStepScreen />} />
+            <Route path='/wizard' element={<StepScreen />} />
           </Routes>
           {/* <ChoiceList
             data={dummy_options}

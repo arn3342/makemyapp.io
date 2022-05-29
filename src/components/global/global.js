@@ -8,6 +8,8 @@ import {
   faL,
   faLaptopHouse
 } from '@fortawesome/free-solid-svg-icons'
+import { SimpleChoice } from '../form/choice'
+import { getRndInteger } from '../../misc/logics'
 
 export const Header = ({ spacing }) => {
   useEffect(() => {})
@@ -164,7 +166,7 @@ export const Button = ({
       {!isLoading ? (
         <div className='d-flex'>
           <span>{label}</span>
-          <FontAwesomeIcon
+          {icon && <FontAwesomeIcon
             className={animateIcon && 'icon_hidden'}
             icon={icon}
             fontSize={16}
@@ -172,7 +174,7 @@ export const Button = ({
             style={{
               marginLeft: '10px'
             }}
-          />
+          />}
         </div>
       ) : (
         <div
@@ -300,6 +302,7 @@ export const SwitchButton = ({ onCheckChanged, label, onCheckRender }) => {
     setChecked(!checked)
     onCheckChanged(value)
   }
+  const randomId = getRndInteger(50, 9889)
   return (
     <div
       style={{
@@ -311,14 +314,14 @@ export const SwitchButton = ({ onCheckChanged, label, onCheckRender }) => {
           className='form-check-input'
           type='checkbox'
           role='switch'
-          id='flexSwitchCheckDefault'
+          id={randomId}
           onChange={event => handleCheck(event.target.checked)}
         />
         <Spacer size='small' />
 
         <label
           className='form-check-label'
-          htmlFor='flexSwitchCheckDefault'
+          htmlFor={randomId}
           style={{ userSelect: 'none' }}
         >
           {label}
@@ -330,14 +333,49 @@ export const SwitchButton = ({ onCheckChanged, label, onCheckRender }) => {
   )
 }
 
-export const SliderModal = ({}) => {
+export const SliderModal = ({ isOpen, options = [], onClose }) => {
+  // const [show, setShow] = useState(isOpen)
+  useEffect(() => {
+    const choiceContainer = document.getElementById('choise-list-container')
+    if (isOpen) {
+      choiceContainer?.classList.add('dim_opacity')
+    } else {
+      choiceContainer?.classList.remove('dim_opacity')
+    }
+  })
+  function handleSubmit(data){
+    setTimeout(() => {
+      onClose()
+    }, 1500) 
+  }
   return (
-    <div className='modal_slider'>
-      <div className='row cols-3'>
+    <div className={`modal_slider ${!isOpen && 'modal_hidden'}`}>
+      <div className='row cols-3' style={{ height: '100%' }}>
         <div className='col' />
         <div className='col' />
-        <div className='col col-sm-5 modal_container'>
-          
+        <div className='col col-sm-5 modal_slider_container shadow_dark '>
+          <Spacer />
+          <Title size='large' content='User Management Features' />
+          <SubTitle
+            content='Enrich your app with industry-standard user management features. 
+            More than 7 customizable features are available.'
+            size='regular'
+            fontType='light'
+          />
+          <Spacer />
+          <div className='choice_extra-small_container d-flex'>
+            {options?.map(item => {
+              return <SimpleChoice title={item.title} />
+            })}
+          </div>
+          <Spacer />
+          <Button
+            label='Save & Close'
+            theme='dark'
+            animateScale={true}
+            canBeBusy
+            onClick={() => handleSubmit()}
+          />
         </div>
       </div>
     </div>

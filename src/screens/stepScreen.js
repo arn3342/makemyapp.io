@@ -4,10 +4,15 @@ import masterData from '../assets/jsons/masterStep.json'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import appListing from '../assets/jsons/appListing.json'
 import { SliderModal } from '../components/global/global'
+import { filterData } from '../misc/logics'
 
 const StepScreen = ({ stepIndex, allowSearch }) => {
   const { state } = useLocation()
   const [currentData, setCurrentData] = useState()
+  const [modalProps, setModalProps] = useState({
+    isOpen: false,
+    options: null
+  })
 
   const navigate = useNavigate()
   const [currentStepIndex, setCurrentIndex] = useState(
@@ -28,8 +33,31 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
     setCurrentData(currentStepData)
   }
 
+  function getOptions (id) {
+    const options = masterData[currentStepIndex].options.find(
+      item => item.id == id
+    ).options
+    return options
+  }
+
+  function performShowModal (id) {
+    setModalProps({
+      isOpen: true,
+      options: getOptions(id)
+    })
+  }
+  function performClose () {
+    setModalProps({
+      isOpen: false
+    })
+  }
   return (
     <div>
+      <SliderModal
+        isOpen={modalProps.isOpen}
+        options={modalProps.options}
+        onClose={() => performClose()}
+      />
       {currentData && (
         <ChoiceList
           {...currentData}
@@ -37,6 +65,9 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
           itemSize={currentStepIndex > 2 && 'compact'}
           handleSubmit={selectedData => handleSubmit(selectedData)}
           theme='light'
+          onItemClick={(selected, id) => {
+            selected && performShowModal(id)
+          }}
         />
       )}
     </div>

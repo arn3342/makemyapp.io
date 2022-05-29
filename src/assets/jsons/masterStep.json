@@ -59,6 +59,7 @@
     "description": "Describe the details about features",
     "options": [
       {
+        "id": 1511,
         "title": "User Management",
         "description": "List of features that maintain the users",
         "options": [

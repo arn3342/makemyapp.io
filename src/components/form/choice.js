@@ -28,38 +28,80 @@ export const Choice = ({
     onSelect(!selected)
     setSelected(!selected)
   }
-  useEffect(() => {
-    // isSelected &&
-    //   console.log('selected state is:', isSelected, ' and id is:', id)
-  })
-  return (
-    <>
-      {itemSize !== 'compact' ? (
-        <div className='col col-lg-3' onClick={() => performSelection()}>
-          <Card theme={`${selected && 'dark'} theme_${theme}`}>
-            <div className='row cols-3'>
-              <div className='col col-sm-2 d-flex'>
-                <div className='icon_regular d-flex'>
-                  <IconParser itemId={id} />
-                </div>
+
+  const Choice_Regular = () => {
+    return (
+      <div className='col col-lg-3' onClick={() => performSelection()}>
+        <Card theme={`${selected && 'dark'} theme_${theme}`}>
+          <div className='row cols-3'>
+            <div className='col col-sm-2 d-flex'>
+              <div className='icon_regular d-flex'>
+                <IconParser itemId={id} />
               </div>
             </div>
-            <Spacer size='medium' />
-            <div className='row'>
+          </div>
+          <Spacer size='medium' />
+          <div className='row'>
+            <Title
+              size='small'
+              content={title}
+              fontType='bold'
+              style={{ fontSize: '1rem' }}
+            />
+          </div>
+          <div className='row'>
+            <SubTitle content={description} />
+          </div>
+          <div className='row'>
+            <SubTitle
+              className='link'
+              fontType='bold'
+              content={
+                options
+                  ? `${options.length - 1}+ Features Available`
+                  : 'No extra options'
+              }
+            />
+          </div>
+        </Card>
+        <Spacer size='medium' />
+      </div>
+    )
+  }
+
+  const Choice_Compact = () => {
+    return (
+      <div className='col col-lg-3' onClick={() => performSelection()}>
+        <Card theme={`${selected && 'dark'} theme_${theme}`} size='compact'>
+          <div className='row cols-3'>
+            <div className='col col-sm-2 d-flex'>
+              <div className='icon_regular d-flex icon_small'>
+                <IconParser itemId={id} />
+              </div>
+            </div>
+            <div className='col m-auto'>
               <Title
                 size='small'
                 content={title}
                 fontType='bold'
                 style={{ fontSize: '1rem' }}
+                className='m-auto'
               />
             </div>
-            <div className='row'>
+          </div>
+          <div className='row cols-2'>
+            <div className='col col-sm-2' />
+            <div className='col'>
               <SubTitle content={description} />
             </div>
-            <div className='row'>
+          </div>
+          <div className='row cols-2'>
+            <div className='col col-sm-2' />
+            <div className='col'>
               <SubTitle
-                className='link'
                 fontType='bold'
+                className='card_option_bg'
+                size='small'
                 content={
                   options
                     ? `${options.length - 1}+ Features Available`
@@ -67,54 +109,28 @@ export const Choice = ({
                 }
               />
             </div>
-          </Card>
-          <Spacer size='medium' />
-        </div>
-      ) : (
-        <div className='col col-lg-3' onClick={() => performSelection()}>
-          <Card theme={`${selected && 'dark'} theme_${theme}`} size='compact'>
-            <div className='row cols-3'>
-              <div className='col col-sm-2 d-flex'>
-                <div className='icon_regular d-flex icon_small'>
-                  <IconParser itemId={id} />
-                </div>
-              </div>
-              <div className='col m-auto'>
-                <Title
-                  size='small'
-                  content={title}
-                  fontType='bold'
-                  style={{ fontSize: '1rem' }}
-                  className='m-auto'
-                />
-              </div>
-            </div>
-            <div className='row cols-2'>
-              <div className='col col-sm-2' />
-              <div className='col'>
-                <SubTitle content={description} />
-              </div>
-            </div>
-            <div className='row cols-2'>
-              <div className='col col-sm-2' />
-              <div className='col'>
-                <SubTitle
-                  fontType='bold'
-                  className='card_option_bg'
-                  size='small'
-                  content={
-                    options
-                      ? `${options.length - 1}+ Features Available`
-                      : 'No extra options'
-                  }
-                />
-              </div>
-            </div>
-          </Card>
-          <Spacer size='medium' />
-        </div>
-      )}
-    </>
+          </div>
+        </Card>
+        <Spacer size='medium' />
+      </div>
+    )
+  }
+
+  return <>{itemSize === 'compact' ? <Choice_Compact /> : <Choice_Regular />}</>
+}
+
+export const SimpleChoice = ({ title, id }) => {
+  const [isSelected, setSelected] = useState(false)
+  return (
+    <div className={`choice_extra-small ${isSelected && 'choice_selected'}`} onClick={() => setSelected(!isSelected)}>
+      <SubTitle
+        fontType='bold'
+        content={title}
+        style={{
+          marginBottom: 0
+        }}
+      />
+    </div>
   )
 }
 
@@ -125,22 +141,23 @@ export const ChoiceList = ({
   allowSearch,
   itemSize,
   handleSubmit,
-  theme
+  theme,
+  onItemClick
 }) => {
   const [filteredDataSource, setFilteredData] = useState([])
   const [selectedData, setSelectedData] = useState([])
 
   function performSelection (selected, id) {
-    let selections = [...selectedData]
-    if (selected) {
-      selections.push(id)
-    } else {
-      selections = selections.filter(x => x != id)
-    }
-    setSelectedData(selections)
+    // let selections = [...selectedData]
+    // if (selected) {
+    //   selections.push(id)
+    // } else {
+    //   selections = selections.filter(x => x != id)
+    // }
+    // setSelectedData(selections)
   }
   return (
-    <div className='container'>
+    <div className='container' id='choise-list-container'>
       <div className='row cols-2'>
         {title && description && (
           <div className='row'>
@@ -187,7 +204,7 @@ export const ChoiceList = ({
           </div>
         )}
         {/* <div className='col col-sm-4'> */}
-        <Spacer size='small'/>
+        <Spacer size='small' />
         <div className='row'>
           {filteredDataSource?.length <= 0
             ? options.map((item, index) => {
@@ -195,7 +212,11 @@ export const ChoiceList = ({
                   <Choice
                     {...item}
                     key={item.id}
-                    onSelect={selected => performSelection(selected, item.id)}
+                    onSelect={selected =>
+                      item.options &&
+                      item.options?.length > 0 &&
+                      onItemClick(selected, item.id)
+                    }
                     isSelected={selectedData.includes(item.id)}
                     itemSize={itemSize}
                     theme={theme}
@@ -207,7 +228,11 @@ export const ChoiceList = ({
                   <Choice
                     {...item}
                     key={item.id}
-                    onSelect={selected => performSelection(selected, item.id)}
+                    onSelect={selected =>
+                      item.options &&
+                      item.options?.length > 0 &&
+                      onItemClick(selected, item.id)
+                    }
                     isSelected={selectedData.includes(item.id)}
                     itemSize={itemSize}
                     theme={theme}

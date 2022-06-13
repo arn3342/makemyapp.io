@@ -1,11 +1,7 @@
 import './App.css'
-import { Header, SliderModal, Spacer } from './components/global/global'
+import { Header, Spacer } from './components/global/global'
 import 'bootstrap/dist/css/bootstrap.css'
-import { Choice, ChoiceList } from './components/form/choice'
-import { CgWebsite } from 'react-icons/cg'
-import { SiAppstore } from 'react-icons/si'
-import { AiOutlineDesktop } from 'react-icons/ai'
-import { Route, Link, Routes, useParams, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import StepScreen from './screens/stepScreen'
 import InitStepScreen from './screens/initStepScreen.'
 

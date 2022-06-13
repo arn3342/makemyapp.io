@@ -1,5 +1,6 @@
 [
   {
+    "id": 1210,
     "title": "  What are you planning to build?",
     "description": "Type of application do you want to build",
     "options": [
@@ -21,242 +22,535 @@
     ]
   },
   {
-    "title": "What do you plan to offer?",
+    "id": 1211,
+    "title": "  What do you plan to offer?",
     "description": "Domain area of your application will cover",
     "options": [
       {
-        "id": 1411,
+        "id": 99012321,
         "title": "Client Facing Interface",
         "description": "direct interaction or communication with a customer and customers use to connect and engage with your business"
       },
       {
-        "id": 1412,
         "title": "Admin Interface (CRM/CMS)",
         "description": "Admin can control the entire application"
       }
     ]
   },
   {
+    "id": 1212,
     "title": "Choose Client Facing Interface type",
     "description": "Describe the interface type of your application",
     "options": [
       {
+        "id": 1212001,
         "title": "Single-Page App (Recommended)",
         "description": "dynamically rewriting the current web page with new data from the web server instead of loading"
       },
       {
+        "id": 1212002,
         "title": "Multi-Page App",
         "description": "Multi-page Application is a web application consisting of a large number of pages completely refreshed every time when data changes on them"
       },
       {
+        "id": 1212003,
         "title": "Progressive Web App",
         "description": "Progressive Web Apps combine many of the advantages of native apps and the Web"
       }
     ]
   },
   {
+    "id": 1213,
     "title": "Choose Client Facing Interface features",
     "description": "Describe the details about features",
     "options": [
       {
-        "id": 1511,
+        "id": 10010,
         "title": "User Management",
         "description": "List of features that maintain the users",
         "options": [
           {
+            "id": 1001001,
             "title": "Email Sign-up/Sign-In",
             "description": "(Allow users to sign-up/sign-in to your platform using their email)"
           },
           {
+            "id": 1001002,
             "title": "Phone Number Sign-up/Sign-in",
             "description": "(Allow users to sign-up/sign-in to your platform using their phone no)"
           },
           {
+            "id": 1001004,
             "title": "Username Sign-up/Sign-in",
             "description": "(Allow users to sign-up/sign-in to your platform using their username)"
           },
           {
+            "id": 1001005,
             "title": "OTP Verification",
             "description": "(Authenticate real users vs bots based on email/phone OTP verification)"
           },
           {
+            "id": 1001006,
             "title": "Single-Sign-On",
             "description": "(allows a user to log in with a single ID to any of several related)"
           },
           {
+            "id": 1001007,
             "title": "Password Generator",
             "description": "(Allow use to generate password by system)"
           },
           {
+            "id": 1001008,
             "title": "Password reset",
             "description": "(Allow user to reset their password)"
           },
           {
+            "id": 1001009,
             "title": "reCAPTCHA",
             "description": "(Allow user to verify identity using captcha)"
           }
         ]
       },
       {
-        "id": 1512,
+        "id": 10011,
         "title": "Social Media Features",
         "description": "List of features that will enrich the social media",
         "options": [
           {
+            "id": 1001101,
             "title": "Follow/Unfollow/Connect",
             "description": "(Allow users to follow/unfollow/connect to others)"
           },
           {
+            "id": 1001102,
             "title": "Media & Content Sharing",
             "description": "(Allow users to sharing their content,post,images,videos)"
           },
           {
+            "id": 1001103,
             "title": "Reactions",
             "description": "(Allow others to react their content)"
           },
           {
+            "id": 1001104,
             "title": "descriptioning",
             "description": "(Allow users to description their sharing items or content)"
           },
           {
+            "id": 1001105,
             "title": "In-App Sharing",
             "description": "(Allow users to description their sharing app)"
           },
           {
+            "id": 1001106,
             "title": "Multi-Platform Sharing",
             "description": "(Allow users to description their sharing app)"
+          },
+          {
+            "id": 1001107,
+            "title": "Comments",
+            "description": "(Allow users to comments post content.)"
+          },
+          {
+            "id": 1001108,
+            "title": "Groups",
+            "description": "Allow user to create groups"
+          },
+          {
+            "id": 1001109,
+            "title": "Pages",
+            "description": "Allow user to create pages and corresponding posts"
+          },
+          {
+            "id": 1001110,
+            "title": "Notification",
+            "description": "Allow user to get any update from your "
+          },
+          {
+            "id": 1001111,
+            "title": "Event",
+            "description": "Allow user to arrange any event."
+          },
+          {
+            "id": 1001112,
+            "title": "Help",
+            "description": "Create a supporting system for any kind of information"
+          },
+          {
+            "id": 1001113,
+            "title": "Market places",
+            "description": "User can show different types of items in marketplaces"
           }
         ]
       },
       {
-        "id": 1513,
+        "id": 10012,
         "title": "In-App Messaging",
         "description": "Enable option to messaging with others",
         "options": [
           {
+            "id": 1001201,
             "title": "Text Messaging",
             "description": "(Allow users to text messaging with others)"
           },
           {
+            "id": 1001202,
             "title": "Media Sharing",
             "description": "(Allow users to sharing their content,post,images,videos with others)"
           },
           {
+            "id": 1001203,
             "title": "Reactions",
             "description": "(Allow others to enable reactions their messages)"
           },
           {
+            "id": 1001204,
             "title": "Email Messaging",
             "description": "(Allow users to establish communication via Email messaging)"
           }
         ]
       },
       {
-        "id": 1514,
+        "id": 10013,
         "title": "Responsive UI",
-        "description": "Make the UI comfortable with devices screen"
+        "description": "Make the UI comfortable with devices screen",
+        "options": [
+          {
+            "id": 1001301,
+            "title": "Splash Screens",
+            "description": "Launching animation screen."
+          }
+        ]
       },
       {
+        "id": 10014,
         "title": "Multi-Tab feature",
         "description": "Multiple tab features around the application"
       },
       {
+        "id": 10015,
         "title": "In-App Purchase",
         "description": "Describe how the application will be purchases",
         "options": [
           {
+            "id": 100017,
             "title": "Subscription",
             "description": "(Allow users to subscribe their app)"
           },
           {
+            "id": 100018,
             "title": "Single Product Purchase",
             "description": "(Allow users to purchase directly)"
           },
           {
+            "id": 100019,
             "title": "Discount",
             "description": "(Offering discout to buy their product)"
           },
           {
+            "id": 100017,
             "title": "Coupon",
             "description": "(Make coupon to cut off prices)"
           },
           {
+            "id": 100017,
             "title": "Affiliation",
             "description": "(Campaign affiliation program to increasing purchase)"
           }
         ]
       },
       {
+        "id": 100016,
         "title": "Payment options",
         "description": "Setup payment options for entire application",
         "options": [
           {
+            "id": 100107,
             "title": "Apple Pay",
             "description": "(Allow users to receive appears on your Apple Cash card in Wallet.)"
           },
           {
+            "id": 100107,
             "title": "Google Pay",
             "description": "(Allow users to pay by google pay)"
           },
           {
+            "id": 100107,
             "title": "PayPal",
             "description": "(Allow user to pay with paypal)"
           },
           {
+            "id": 100107,
             "title": "Credit/Debit Card",
             "description": "(Allow users to pay using their credit/debit card)"
           },
           {
+            "id": 100107,
             "title": "Wire Transfer",
             "description": "(Allow user to transferring funds by wire)"
           },
           {
+            "id": 100107,
             "title": "Save Payment Information",
             "description": "(Allow user to save payment information)"
           }
         ]
       },
       {
+        "id": 100107,
         "title": "In-App Advertising",
         "description": "The feature to show personalised ads to your users",
         "options": [
           {
+            "id": 100107,
             "title": "Third-Party Ads",
-            "description": "Setup location service options to the application"
+            "description": "Setup location service options to the application",
+            "options": [
+              {
+                "id": 100107,
+                "title": "Search ads",
+                "description": ""
+              },
+              {
+                "id": 100107,
+                "title": "Display ads",
+                "description": ""
+              },
+              {
+                "id": 100107,
+                "title": "Vidoes ads",
+                "description": ""
+              }
+            ]
           },
           {
+            "id": 100107,
             "title": "Self-Hosted Ads",
             "description": "Setup location service options to the application"
           }
         ]
       },
       {
+        "id": 100180,
         "title": "Location Services",
         "description": "Setup location service options to the application",
         "options": [
           {
+            "id": 100221,
             "title": "Geolocation Service",
             "description": "(the process of determining the location of a computer, phone, or other network-based devices)"
           },
           {
+            "id": 100222,
             "title": "Google Maps",
             "description": "(Google Maps is a web mapping platform and consumer application offered by Google. It offers satellite imagery, aerial photography, street maps)"
           },
           {
+            "id": 100223,
             "title": "Apple Maps",
             "description": "(Allow user to setting up apple map in their apps)"
           },
           {
+            "id": 100224,
             "title": "Bing Maps",
             "description": "(Allow user to setting up bing map in their apps)"
           },
           {
+            "id": 100225,
             "title": "OpenStreetMap",
             "description": "(Allow user to o create a free editable geographic database of the world)"
           },
           {
+            "id": 100226,
             "title": "Waze",
             "description": "(Realtime driving directions based on live traffic updates from Waze - Get the best route to your destination from fellow drivers.)"
+          }
+        ]
+      },
+
+      {
+        "id": 10019,
+        "title": "Data Management",
+        "description": "Data are managed in a planned way",
+        "options": [
+          {
+            "id": 100221,
+            "title": "Search",
+            "description": "Allow user to search desire data"
+          },
+          {
+            "id": 100222,
+            "title": "Filter",
+            "description": "User can filter their data by price,brand,category etc."
+          },
+          {
+            "id": 100223,
+            "title": "Sort",
+            "description": "User can sort their products according to date,model,price etc"
+          },
+          {
+            "id": 100224,
+            "title": "Download or Upload",
+            "description": "User can download and upload their contents."
+          },
+          {
+            "id": 100225,
+            "title": "Favourite",
+            "description": "User add their data as favourite data."
+          },
+          {
+            "id": 100226,
+            "title": "Stock",
+            "description": "All the products related to stocks"
+          }
+        ]
+      },
+
+      {
+        "id": 10020,
+        "title": "Item Processing",
+        "description": "Items that user need are ready to process",
+        "options": [
+          {
+            "id": 1002211,
+            "title": "Cart",
+            "description": "Allow user/customer to add their products in cart."
+          },
+          {
+            "id": 1002212,
+            "title": "Checkout",
+            "description": "User can confirm their order by checkout."
+          },
+          {
+            "id": 1002213,
+            "title": "Copun Code",
+            "description": "User can use different types of voucher, copun code."
+          },
+          {
+            "id": 1002214,
+            "title": "Shipment",
+            "description": "Allow customers to shipment their products."
+          },
+          {
+            "id": 1002215,
+            "title": "Delivery",
+            "description": "Conscious about their product time to time delivery"
+          }
+        ]
+      },
+      {
+        "id": 10021,
+        "title": "CRM Technology",
+        "description": "Technology for managing all your company's relationships and interactions with customers",
+        "options": [
+          {
+            "id": 1002277,
+            "title": "Customer service",
+            "description": "Provided customer supports and services"
+          },
+          {
+            "id": 1002278,
+            "title": "Real-time data",
+            "description": "Analysis business by real time data"
+          },
+          {
+            "id": 1002279,
+            "title": "Reporting",
+            "description": "Allow user to show reports according to their requirement"
+          },
+          {
+            "id": 1002270,
+            "title": "Sales forecasting",
+            "description": "Process of estimating future revenue by predicting the amount of product or services"
+          },
+          {
+            "id": 1002274,
+            "title": "Marketing automation",
+            "description": "Manages marketing processes and multifunctional campaigns, across multiple channels"
+          },
+          {
+            "id": 1002276,
+            "title": "Campaign management",
+            "description": "Planning, execution, tracking, and analysis of a marketing initiative"
+          },
+          {
+            "id": 1002273,
+            "title": "Daily Dashboard",
+            "description": "Daily reports are shown to the dashboard."
+          }
+        ]
+      },
+      {
+        "id": 10022,
+        "title": "Social Marketing",
+        "description": "Manage multiple social networks, schedule posts, increase your Traffic and engage your audiences.",
+        "options": [
+          {
+            "id": 1002255,
+            "title": "Multi Social Media accounts",
+            "description": "Allow user to login by Instagram, Facebook, Twitter etc"
+          },
+          {
+            "id": 1002256,
+            "title": "Image resize ",
+            "description": "Automatic Image resize to match Instagram’s aspect ratios and others platform"
+          },
+          {
+            "id": 1002257,
+            "title": "Schedule Posts",
+            "description": "Allow user to auto post, schedule post video, image, stories"
+          },
+          {
+            "id": 1002258,
+            "title": "Packages Subscription",
+            "description": "Allow advanced user to subscribe their packages."
+          }
+        ]
+      },
+      {
+        "id": 10022,
+        "title": "SEO Features",
+        "description": "To optimize web content by analyzing content for keywords, on-site links and other SEO considerations.",
+        "options": [
+          {
+            "id": 100223,
+            "title": "Track Visitors",
+            "description": "Track your visitors traffic and input queries."
+          },
+          {
+            "id": 100223,
+            "title": "Image resize ",
+            "description": "Automatic Image resize to match Instagram’s aspect ratios and others platform"
+          },
+          {
+            "id": 100223,
+            "title": "Schedule Posts",
+            "description": "Allow user to auto post, schedule post video, image, stories"
+          },
+          {
+            "id": 100223,
+            "title": "Packages Subscription",
+            "description": "Allow advanced user to subscribe their packages."
+          },
+          {
+            "id": 100223,
+            "title": "Keywords Suggestion Tool",
+            "description": "Suggest keywords for SEO optimization."
+          },
+          {
+            "id": 100223,
+            "title": "Page Speed Checker",
+            "description": "Check the loading time of your pages."
+          },
+          {
+            "id": 100223,
+            "title": " Online Md5 Generator",
+            "description": "Allow user to generate Md5 encrypetd password."
+          },
+          {
+            "id": 100223,
+            "title": "Keyword Density Checker",
+            "description": "Allow user to generate Md5 encrypetd password."
           }
         ]
       }

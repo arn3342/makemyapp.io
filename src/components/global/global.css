@@ -166,6 +166,9 @@ i {
   color: #fff;
   background: transparent;
 }
+/* .bg_dim {
+  background: var(--blueLight);
+} */
 .size_small {
   font-weight: 600;
 }

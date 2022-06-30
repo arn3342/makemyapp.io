@@ -8,7 +8,7 @@ import {
   faL,
   faLaptopHouse
 } from '@fortawesome/free-solid-svg-icons'
-import { SimpleChoice, SimpleChoiceList } from '../form'
+import { Button, SimpleChoice, SimpleChoiceList } from '../form'
 import { getRandomInteger } from '../../misc/logics'
 import { extractFeature } from '../../misc/featureExtractor'
 
@@ -123,7 +123,15 @@ export const SubTitle = ({
   )
 }
 
-export function Card ({ children, theme, size, id, className, onClick, style }) {
+export function Card ({
+  children,
+  theme,
+  size,
+  id,
+  className,
+  onClick,
+  style
+}) {
   return (
     <div
       className={`card card_${theme} shadow_light card_${size} ${className}`}
@@ -137,139 +145,6 @@ export function Card ({ children, theme, size, id, className, onClick, style }) 
 
 export const Spacer = ({ size }) => {
   return <div className={`spacer_${size ? size : 'small'}`} />
-}
-
-export const Button = ({
-  label,
-  onClick,
-  icon,
-  hasShadow,
-  canBeBusy,
-  size,
-  isExtraSmall,
-  theme,
-  animateIcon,
-  animateScale
-}) => {
-  const [isLoading, setLoading] = useState(false)
-  function performClick () {
-    canBeBusy && setLoading(!isLoading)
-    onClick()
-  }
-  return (
-    <div
-      className={`button_light ${(isLoading || theme === 'dark') &&
-        'button_dark'} m-auto ${hasShadow &&
-        'shadow'} button_size_${size} d-flex button_light_${isExtraSmall &&
-        'extended'} ${animateIcon && 'icon_animated'} ${animateScale &&
-        'scale_animated'}`}
-      onClick={() => performClick()}
-      style={{
-        pointerEvents: isLoading ? 'none' : 'all'
-      }}
-    >
-      {!isLoading ? (
-        <div className='d-flex'>
-          <span>{label}</span>
-          {icon && (
-            <FontAwesomeIcon
-              className={animateIcon && 'icon_hidden'}
-              icon={icon}
-              fontSize={16}
-              fill='#000'
-              style={{
-                marginLeft: '10px'
-              }}
-            />
-          )}
-        </div>
-      ) : (
-        <div
-          className='spinner-border text-light spinner_small'
-          role='status'
-        />
-      )}
-    </div>
-  )
-}
-
-export const Input = ({
-  icon,
-  placeholder,
-  className,
-  onValueChange,
-  isMultiLine
-}) => {
-  const [isFocused, setFocused] = useState(false)
-  return (
-    <div
-      className={`input ${className} d-flex ${isFocused && 'input_focused'}`}
-    >
-      {icon && (
-        <div className='col col-sm-1'>
-          <FontAwesomeIcon icon={icon} fontSize={15} className='m-auto' />
-        </div>
-      )}
-      <div className='col'>
-        {isMultiLine ? (
-          <textarea
-            type='text'
-            className='input_regular multi-line'
-            placeholder={placeholder}
-            onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
-            onChange={e => onValueChange(e.target.value)}
-          />
-        ) : (
-          <input
-            type='text'
-            className='input_regular'
-            placeholder={placeholder}
-            onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
-            onChange={e => onValueChange(e.target.value)}
-          />
-        )}
-      </div>
-    </div>
-  )
-}
-
-export const SwitchButton = ({ onCheckChanged, label, onCheckRender }) => {
-  const [checked, setChecked] = useState(false)
-  function handleCheck (value) {
-    setChecked(!checked)
-    onCheckChanged(value)
-  }
-  const randomId = getRandomInteger(50, 9889)
-  return (
-    <div
-      style={{
-        padding: '0'
-      }}
-    >
-      <div className='form-check form-switch d-flex'>
-        <input
-          className='form-check-input'
-          type='checkbox'
-          role='switch'
-          id={randomId}
-          onChange={event => handleCheck(event.target.checked)}
-        />
-        <Spacer size='small' />
-
-        <label
-          className='form-check-label'
-          htmlFor={randomId}
-          style={{ userSelect: 'none' }}
-        >
-          {label}
-        </label>
-        <Spacer size='small' />
-      </div>
-      {checked && <div className='row'>{onCheckRender}</div>}
-    </div>
-  )
 }
 
 export const SliderModal = ({
@@ -352,6 +227,17 @@ export const SliderModal = ({
 }
 
 export function Slider ({ children, onClose, isOpen }) {
+  useEffect(() => {
+    const parentContainer = document.body
+    const stepContainer = document.getElementById('step_main_container')
+    if (isOpen) {
+      stepContainer.style.opacity = 0.4
+      parentContainer.style.overflow = 'hidden'
+    } else {
+      stepContainer.style.opacity = 1
+      parentContainer.style.overflow = 'scroll'
+    }
+  }, [isOpen])
   return (
     <div className={`modal_slider ${!isOpen && 'modal_hidden'}`}>
       <div className='row cols-3 bg_dim modal_main' style={{ height: '100%' }}>
@@ -379,36 +265,25 @@ export const FeatureSelector = ({ onSubmit, options, btnSubmitLabel }) => {
     onSubmit && onSubmit(features)
   }
   return (
-    <>
-      {options.map(opt => {
-        return opt.options ? (
-          <div key={opt.id}>
-            <SubTitle
-              className='margin_xs'
-              fontType='bold'
-              content={opt.title}
-            />
-            <SimpleChoiceList
-              data={opt.options}
-              onChoiceChange={choiceIds => setSelectedChoices(choiceIds)}
-              itemProps={{
-                className: 'font_xs'
-              }}
-              // comparingData={comparingOptions}
-            />
-          </div>
-        ) : (
-          <SimpleChoice title={opt.title} key={opt.id} />
-        )
-      })}
-      <Spacer />
-      <Button
-        label={btnSubmitLabel || 'Add Features'}
-        theme='dark'
-        onClick={() => handleSubmit()}
-      />
-      <Spacer />
-      <Button label='Close' onClick={onSubmit && onSubmit} />
-    </>
+    options && (
+      <>
+        <SimpleChoiceList
+          data={options}
+          onChoiceChange={choiceIds => setSelectedChoices(choiceIds)}
+          itemProps={{
+            className: 'font_xs'
+          }}
+          // comparingData={comparingOptions}
+        />
+        <Spacer />
+        <Button
+          label={btnSubmitLabel || 'Add Features'}
+          theme='dark'
+          onClick={() => handleSubmit()}
+        />
+        <Spacer />
+        <Button label='Close' onClick={onSubmit && onSubmit} />
+      </>
+    )
   )
 }

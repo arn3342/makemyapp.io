@@ -12,6 +12,7 @@ import {
 } from '../components/global'
 import { filterData } from '../misc/logics'
 import { Button, SimpleChoiceList } from '../components/form'
+import { extractFeatures, extractSubFeatures } from '../misc/featureExtractor'
 
 const StepScreen = ({ stepIndex, allowSearch }) => {
   const { state } = useLocation()
@@ -48,12 +49,13 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
   }
 
   function performShowModal (id) {
-    const data = getFeatureById(id)
-    console.log(data)
-    setModalProps({
-      isOpen: true,
-      data
-    })
+    const data = extractSubFeatures(id)
+    data && console.log('Data:', data)
+    data &&
+      setModalProps({
+        isOpen: true,
+        options: data
+      })
   }
   function performClose () {
     setModalProps({
@@ -62,16 +64,14 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
   }
   return (
     <div>
-      {/* <SliderModal
-        isOpen={modalProps.isOpen}
-        {...(modalProps && modalProps.data)}
-        onClose={() => performClose()}
-      /> */}
       <Slider isOpen={modalProps.isOpen} onClose={() => performClose()}>
-        {/* <FeatureSelector options={currentData} /> */}
+        <FeatureSelector
+          options={modalProps.options}
+          onSubmit={() => performClose()}
+        />
       </Slider>
       {currentData && (
-        <div className='theme_light'>
+        <div className='theme_light' id='step_main_container'>
           <Title content={currentData.title} size='large-2' />
           <Spacer />
           <SubTitle content={currentData.description} size='large' />
@@ -80,13 +80,13 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
             data={currentData.options}
             allowSearch={currentStepIndex > 2}
             itemProps={{
-              itemSize: currentStepIndex < 3 ? 'regular' : 'small'
+              itemSize: currentStepIndex < 3 ? 'regular' : 'small',
+              disableDeselect: currentStepIndex >= 3
             }}
-            handleSubmit={selectedData => handleSubmit(selectedData)}
+            disableDeselect
+            // handleSubmit={selectedData => handleSubmit(selectedData)}
             theme='light'
-            onItemClick={(selected, id) => {
-              selected && performShowModal(id)
-            }}
+            onChoiceChange={ids => performShowModal(ids[ids.length - 1])}
           />
           <div
             className='row d-flex'

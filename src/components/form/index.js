@@ -33,7 +33,7 @@ export const Button = ({
       style={{
         pointerEvents: isBusy || disabled ? 'none' : 'all'
       }}
-      onClick={() => onClick && onClick()}
+      onClick={onClick && onClick}
     >
       {!isBusy ? (
         <div className='d-flex'>
@@ -303,6 +303,7 @@ export const SimpleChoice = ({
   onSelect,
   className,
   disableSelect,
+  disableDeselect,
   selected,
   data,
   itemSize = 'xs'
@@ -310,6 +311,12 @@ export const SimpleChoice = ({
   const [isSelected, setSelected] = useState(selected)
   function performSelection () {
     if (!disableSelect) {
+      if (isSelected) {
+        if (disableDeselect) {
+          onSelect(isSelected)
+          return
+        }
+      }
       setSelected(!isSelected)
       onSelect(!isSelected)
     }

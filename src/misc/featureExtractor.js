@@ -21,6 +21,10 @@ export function extractFeatures () {
   }
 }
 
+export function extractSubFeatures (parentId) {
+  return FeatureList[3].options?.find(x => x.id === parentId)?.options
+}
+
 export function extractFeature (featureId) {
   return extractFeatures().subFeatures.find(x => x.id == featureId)
 }

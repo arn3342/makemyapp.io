@@ -67,7 +67,7 @@
       {
         "id": 10030,
         "title": "User onboarding",
-        "description": "Sign up and sign in options for users",
+        "description": "User authentication and onboarding features for your application.",
         "options": [
           {
             "id": 100301,
@@ -748,48 +748,48 @@
         ]
       },
       {
-        "id": 10070,
+        "id": 10045,
         "title": "Miscellaneous",
         "description": "List of all other uncategorised yet important and fun features.",
         "options": [
           {
-            "id": 100701,
+            "id": 100451,
             "title": "Give feedback",
             "description": "Users can give feedback about the app",
             "estDevTime": 0
           },
           {
-            "id": 100702,
+            "id": 100452,
             "title": "Give reviews",
             "description": "Users can give reviews",
             "estDevTime": 12.2
           },
           {
-            "id": 100703,
+            "id": 100453,
             "title": "Report an issue",
             "description": "Users can report an issue about the app",
             "estDevTime": 8.8
           },
           {
-            "id": 100704,
+            "id": 100454,
             "title": "Delete account",
             "description": "Users can delete account and remove all the datas",
             "estDevTime": 9.4
           },
           {
-            "id": 100705,
+            "id": 100455,
             "title": "User agreement page",
             "description": "Allow users to read and accept any agreements",
             "estDevTime": 0
           },
           {
-            "id": 100706,
+            "id": 100456,
             "title": "FAQs",
             "description": "Users can view all the questions and answers related to your app",
             "estDevTime": 5.8
           },
           {
-            "id": 100707,
+            "id": 100457,
             "title": "Terms & Privacy page",
             "description": "Allow users to read and accept any agreements",
             "estDevTime": 5.8

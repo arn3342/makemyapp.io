@@ -8,8 +8,9 @@ import {
   faL,
   faLaptopHouse
 } from '@fortawesome/free-solid-svg-icons'
-import { SimpleChoice } from '../form'
+import { SimpleChoice, SimpleChoiceList } from '../form'
 import { getRandomInteger } from '../../misc/logics'
+import { extractFeature } from '../../misc/featureExtractor'
 
 export const Header = ({ spacing }) => {
   useEffect(() => {})
@@ -122,9 +123,13 @@ export const SubTitle = ({
   )
 }
 
-export function Card ({ children, theme, size, id, className }) {
+export function Card ({ children, theme, size, id, className, onClick, style }) {
   return (
-    <div className={`card card_${theme} shadow_light card_${size}`}>
+    <div
+      className={`card card_${theme} shadow_light card_${size} ${className}`}
+      onClick={onClick && onClick}
+      style={style}
+    >
       {children}
     </div>
   )
@@ -343,5 +348,67 @@ export const SliderModal = ({
         </div>
       </div>
     </div>
+  )
+}
+
+export function Slider ({ children, onClose, isOpen }) {
+  return (
+    <div className={`modal_slider ${!isOpen && 'modal_hidden'}`}>
+      <div className='row cols-3 bg_dim modal_main' style={{ height: '100%' }}>
+        <div className='col' />
+        <div className='col' />
+        <div className='col col-sm-5 slider_container'>
+          <div
+            className={`modal_container shadow_light ${isOpen &&
+              'modal_container_visible'}`}
+          >
+            {children}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export const FeatureSelector = ({ onSubmit, options, btnSubmitLabel }) => {
+  const [selectedChoices, setSelectedChoices] = useState([])
+  function handleSubmit () {
+    const features = selectedChoices.map(id => {
+      return extractFeature(id)
+    })
+    onSubmit && onSubmit(features)
+  }
+  return (
+    <>
+      {options.map(opt => {
+        return opt.options ? (
+          <div key={opt.id}>
+            <SubTitle
+              className='margin_xs'
+              fontType='bold'
+              content={opt.title}
+            />
+            <SimpleChoiceList
+              data={opt.options}
+              onChoiceChange={choiceIds => setSelectedChoices(choiceIds)}
+              itemProps={{
+                className: 'font_xs'
+              }}
+              // comparingData={comparingOptions}
+            />
+          </div>
+        ) : (
+          <SimpleChoice title={opt.title} key={opt.id} />
+        )
+      })}
+      <Spacer />
+      <Button
+        label={btnSubmitLabel || 'Add Features'}
+        theme='dark'
+        onClick={() => handleSubmit()}
+      />
+      <Spacer />
+      <Button label='Close' onClick={onSubmit && onSubmit} />
+    </>
   )
 }

@@ -1,0 +1,7 @@
+@import url("../global/global.css");
+.feature_title {
+  background: var(--deepBlue);
+}
+.padding_m {
+  padding: 10px 15px;
+}

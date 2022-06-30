@@ -12,9 +12,11 @@ import phoneAnim from '../assets/gifs/phone.json'
 
 const InitStepScreen = ({}) => {
   const [hasSimilarApps, setHasSimilarApps] = useState(false)
+  const [isSubmitting, setSubmitting] = useState(false)
   const navigate = useNavigate()
 
   function handleSubmit () {
+    setSubmitting(true)
     setTimeout(() => {
       navigate('wizard', {
         replace: true,
@@ -74,7 +76,9 @@ const InitStepScreen = ({}) => {
         </div>
         <div className='col  col-sm-1' />
         <div className='col col-sm-5'>
-          <div className='row modal_container shadow'>
+          <div className='row modal_container shadow' style={{
+            transform: 'translate(0, 0)'
+          }}>
             <Title
               size='large-2'
               fontType='light'
@@ -109,7 +113,7 @@ const InitStepScreen = ({}) => {
                 theme='dark'
                 animateScale={true}
                 icon={faAngleRight}
-                canBeBusy
+                isBusy={isSubmitting}
                 onClick={() => handleSubmit()}
               />
             </div>

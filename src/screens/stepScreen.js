@@ -2,9 +2,16 @@ import React, { useEffect, useState } from 'react'
 import masterData from '../assets/jsons/masterStep.json'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import appListing from '../assets/jsons/appListing.json'
-import { SliderModal } from '../components/global'
+import {
+  FeatureSelector,
+  Slider,
+  SliderModal,
+  Spacer,
+  SubTitle,
+  Title
+} from '../components/global'
 import { filterData } from '../misc/logics'
-import { SimpleChoiceList } from '../components/form'
+import { Button, SimpleChoiceList } from '../components/form'
 
 const StepScreen = ({ stepIndex, allowSearch }) => {
   const { state } = useLocation()
@@ -55,22 +62,49 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
   }
   return (
     <div>
-      <SliderModal
+      {/* <SliderModal
         isOpen={modalProps.isOpen}
-        {...modalProps && modalProps.data}
+        {...(modalProps && modalProps.data)}
         onClose={() => performClose()}
-      />
+      /> */}
+      <Slider isOpen={modalProps.isOpen} onClose={() => performClose()}>
+        {/* <FeatureSelector options={currentData} /> */}
+      </Slider>
       {currentData && (
-        <SimpleChoiceList
-          {...currentData}
-          allowSearch={currentStepIndex > 2}
-          itemSize={currentStepIndex > 2 && 'compact'}
-          handleSubmit={selectedData => handleSubmit(selectedData)}
-          theme='light'
-          onItemClick={(selected, id) => {
-            selected && performShowModal(id)
-          }}
-        />
+        <div className='theme_light'>
+          <Title content={currentData.title} size='large-2' />
+          <Spacer />
+          <SubTitle content={currentData.description} size='large' />
+          <Spacer />
+          <SimpleChoiceList
+            data={currentData.options}
+            allowSearch={currentStepIndex > 2}
+            itemProps={{
+              itemSize: currentStepIndex < 3 ? 'regular' : 'small'
+            }}
+            handleSubmit={selectedData => handleSubmit(selectedData)}
+            theme='light'
+            onItemClick={(selected, id) => {
+              selected && performShowModal(id)
+            }}
+          />
+          <div
+            className='row d-flex'
+            style={{
+              justifyContent: 'flex-start'
+            }}
+          >
+            <Spacer size='large' />
+            <div className='col col-sm-2'>
+              <Button
+                label='Continue'
+                theme='dark'
+                animateScale={true}
+                onClick={handleSubmit}
+              />
+            </div>
+          </div>
+        </div>
       )}
     </div>
   )

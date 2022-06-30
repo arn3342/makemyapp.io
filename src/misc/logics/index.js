@@ -68,6 +68,16 @@ export function getUrlExt (url, getIfImageOrVideo) {
   return type
 }
 
-export function getRndInteger(min, max) {
+export function getRandomInteger (min, max) {
   return Math.floor(Math.random() * (max - min)) + min
+}
+export const colorCodes = [
+  { background: '#8911f2', color: '#fff' },
+  { background: '#f2116b', color: '#fff' },
+  { background: '#0bb546', color: '#fff' },
+  { background: '#b5710b', color: '#fff' },
+  { background: '#2b3b4d', color: '#fff' }
+]
+export function randomColorSelector () {
+  return colorCodes[(Math.random() * colorCodes.length) | 0]
 }

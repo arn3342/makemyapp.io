@@ -1,15 +1,8 @@
 import React, { useState } from 'react'
-import {
-  Title,
-  SubTitle,
-  Input,
-  Spacer,
-  DropDown,
-  SwitchButton,
-  Button
-} from '../components/global/global'
+import { Title, SubTitle, Spacer } from '../components/global/'
+import { DropDown, Input, Button } from '../components/form'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
-import { ChoiceList } from '../components/form/choice'
+import { SimpleChoiceList } from '../components/form'
 import { Player, Controls } from '@lottiefiles/react-lottie-player'
 import SplashAnim from '../assets/gifs/step_1.json'
 import { useNavigate } from 'react-router-dom'

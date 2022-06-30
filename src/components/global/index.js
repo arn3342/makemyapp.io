@@ -8,8 +8,8 @@ import {
   faL,
   faLaptopHouse
 } from '@fortawesome/free-solid-svg-icons'
-import { SimpleChoice } from '../form/choice'
-import { getRndInteger } from '../../misc/logics'
+import { SimpleChoice } from '../form'
+import { getRandomInteger } from '../../misc/logics'
 
 export const Header = ({ spacing }) => {
   useEffect(() => {})
@@ -230,81 +230,13 @@ export const Input = ({
   )
 }
 
-export const DropDown = ({
-  icon,
-  placeholder,
-  className,
-  onValueChange,
-  options
-}) => {
-  const [isFocused, setFocused] = useState(false)
-  const [selectedValue, setSelectedValue] = useState(placeholder)
-  function handleBlur (event) {
-    if (!event.currentTarget.contains(event.relatedTarget)) {
-      setFocused(false)
-    }
-  }
-  function handleValueChange (value) {
-    setSelectedValue(value)
-    setFocused(false)
-  }
-  return (
-    <div
-      className={`dropdown ${isFocused && 'dropdown_focused'}`}
-      tabIndex={1}
-      onFocus={() => setFocused(true)}
-      onBlur={event => handleBlur(event)}
-      style={{
-        padding: '0px'
-      }}
-    >
-      <div className={`input d-flex dropdown`}>
-        {icon && (
-          <div className='col col-sm-1'>
-            <FontAwesomeIcon icon={icon} fontSize={15} className='m-auto' />
-          </div>
-        )}
-        <div className='col left-align'>
-          <strong>{selectedValue}</strong>
-        </div>
-        <div className='col col-sm-1'>
-          <FontAwesomeIcon
-            icon={faAngleDown}
-            fontSize={15}
-            className='m-auto'
-          />
-        </div>
-      </div>
-      <div className='container'>
-        <div
-          className={`row dropdown_container ${isFocused &&
-            'container_visible'}`}
-        >
-          {options.map((value, index) => {
-            return (
-              <button
-                value={value}
-                className='input item'
-                onClick={() => handleValueChange(value)}
-                key={index}
-              >
-                {value}
-              </button>
-            )
-          })}
-        </div>
-      </div>
-    </div>
-  )
-}
-
 export const SwitchButton = ({ onCheckChanged, label, onCheckRender }) => {
   const [checked, setChecked] = useState(false)
   function handleCheck (value) {
     setChecked(!checked)
     onCheckChanged(value)
   }
-  const randomId = getRndInteger(50, 9889)
+  const randomId = getRandomInteger(50, 9889)
   return (
     <div
       style={{
@@ -388,7 +320,7 @@ export const SliderModal = ({
               return (
                 <SimpleChoice
                   title={item.title}
-                  key={item.id || getRndInteger(988, 12388)}
+                  key={item.id || getRandomInteger(988, 12388)}
                 />
               )
             })}
@@ -400,13 +332,13 @@ export const SliderModal = ({
             animateScale={true}
             canBeBusy
             onClick={() => handleSubmit(true)}
-            key={getRndInteger(99, 88738)}
+            key={getRandomInteger(99, 88738)}
           />
           <Spacer />
           <Button
             label='Close'
             onClick={() => handleSubmit(false)}
-            key={getRndInteger(99, 88738)}
+            key={getRandomInteger(99, 88738)}
           />
         </div>
       </div>

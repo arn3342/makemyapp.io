@@ -1,5 +1,5 @@
 import './App.css'
-import { Header, Spacer } from './components/global/global'
+import { Header, Spacer } from './components/global'
 import 'bootstrap/dist/css/bootstrap.css'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import StepScreen from './screens/stepScreen'

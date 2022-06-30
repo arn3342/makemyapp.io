@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { ChoiceList } from '../components/form/choice'
 import masterData from '../assets/jsons/masterStep.json'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import appListing from '../assets/jsons/appListing.json'
-import { SliderModal } from '../components/global/global'
+import { SliderModal } from '../components/global'
 import { filterData } from '../misc/logics'
+import { SimpleChoiceList } from '../components/form'
 
 const StepScreen = ({ stepIndex, allowSearch }) => {
   const { state } = useLocation()
@@ -61,7 +61,7 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
         onClose={() => performClose()}
       />
       {currentData && (
-        <ChoiceList
+        <SimpleChoiceList
           {...currentData}
           allowSearch={currentStepIndex > 2}
           itemSize={currentStepIndex > 2 && 'compact'}

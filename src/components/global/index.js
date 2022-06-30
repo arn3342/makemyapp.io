@@ -6,7 +6,8 @@ import {
   faAngleDown,
   faAngleRight,
   faL,
-  faLaptopHouse
+  faLaptopHouse,
+  faPlus
 } from '@fortawesome/free-solid-svg-icons'
 import { Button, SimpleChoice, SimpleChoiceList } from '../form'
 import { getRandomInteger } from '../../misc/logics'
@@ -280,6 +281,9 @@ export const FeatureSelector = ({ onSubmit, options, btnSubmitLabel }) => {
           label={btnSubmitLabel || 'Add Features'}
           theme='dark'
           onClick={() => handleSubmit()}
+          icon={faPlus}
+          animateIcon
+          animateScale
         />
         <Spacer />
         <Button label='Close' onClick={onSubmit && onSubmit} />

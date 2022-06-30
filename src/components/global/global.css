@@ -334,20 +334,28 @@ i {
 .button_size_small {
   min-width: 80px;
 }
+
 .icon_animated:hover .icon_hidden {
-  transform: scale(1);
+  transform: translateX(0%);
+  opacity: 1;
   position: relative;
 }
-.icon_hidden {
-  transform: scale(0);
-  /* position: absolute; */
+.icon_animated:hover .text_icon_animated{
+  transform: translateX(0%);
+}
+.button_text {
   transition: all 300ms;
 }
-/* .scale_animated {
-  
-} */
+.icon_hidden {
+  opacity: 0;
+  transform: translateX(50%);
+  transition: all 300ms;
+}
+.text_icon_animated {
+  transform: translateX(10px);
+}
 .scale_animated:hover {
-  transform: scale(1.1);
+  transform: scale(1.04);
   box-shadow: var(--shadowDark);
   background: var(--blue) !important;
 }

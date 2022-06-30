@@ -71,12 +71,13 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
           <>
             <Title
               fontType='bold'
-              content={`${modalProps.parent.title} Features`}
+              content={`${modalProps.parent.title} Features.`}
             />
             <SubTitle
               size='medium'
               content={`Enrich your application with industry standard ${modalProps.parent.title} features`}
             />
+            <Spacer/>
             <FeatureSelector
               options={modalProps.options}
               onSubmit={() => performClose()}

@@ -29,11 +29,11 @@ export const Button = ({
         'shadow'} button_size_${size} d-flex button_light_${isExtraSmall &&
         'extended'} ${animateIcon && 'icon_animated'} ${animateScale &&
         'scale_animated'} ${isRounded && 'button_rounded'} ${className}
-          ${disabled && 'disabled'}`}
+        ${disabled && 'disabled'}`}
       style={{
         pointerEvents: isBusy || disabled ? 'none' : 'all'
       }}
-      onClick={onClick && onClick}
+      onClick={() => onClick && onClick()}
     >
       {!isBusy ? (
         <div className='d-flex'>

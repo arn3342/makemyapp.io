@@ -259,10 +259,6 @@ i {
   transform: scale(1.04);
   /* color: #fff; */
 }
-.card:hover p {
-  /* -webkit-box-shadow: -1px 7px 17px -4px rgba(0, 119, 255, 0.127);
-  box-shadow: var(--shadow); */
-}
 .card_compact {
   padding: 8px 10px;
   padding-bottom: 0px !important;
@@ -458,9 +454,6 @@ textarea {
   border: none;
 }
 /*#endregion */
-.choice {
-
-}
 .choice_extra-small{
   border: 2px solid var(--darkBlue);
   background: #fff;

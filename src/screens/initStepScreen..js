@@ -109,7 +109,7 @@ const InitStepScreen = ({}) => {
             <Spacer size='medium' />
             <div className='row d-flex'>
               <Button
-                label='Save & Proceed'
+                label='Get Started'
                 theme='dark'
                 animateScale={true}
                 icon={faAngleRight}

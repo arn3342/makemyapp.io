@@ -13,6 +13,8 @@ import {
 import { filterData } from '../misc/logics'
 import { Button, SimpleChoiceList } from '../components/form'
 import { extractFeatures, extractSubFeatures } from '../misc/featureExtractor'
+import './index.css'
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
 const StepScreen = ({ stepIndex, allowSearch }) => {
   const { state } = useLocation()
@@ -104,21 +106,24 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
             onChoiceChange={ids => performShowModal(ids[ids.length - 1])}
           />
           <div
-            className='row d-flex'
+            className={`row d-flex ${currentStepIndex >= 3 && 'button_final'}`}
             style={{
-              justifyContent: 'flex-start'
+              justifyContent: 'flex-start',
             }}
           >
             <Spacer size='large' />
             <div className='col col-sm-2'>
               <Button
-                label='Continue'
+                label={`Continue ${currentStepIndex >= 3 ? 'To Builder' : ''}`}
                 theme='dark'
                 animateScale={true}
                 onClick={handleSubmit}
+                icon={faAngleRight}
+                animateIcon
               />
             </div>
           </div>
+          <Spacer/>
         </div>
       )}
     </div>

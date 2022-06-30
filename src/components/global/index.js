@@ -17,7 +17,7 @@ export const Header = ({ spacing }) => {
   useEffect(() => {})
 
   return (
-    <div className={`menu_sticky spacing_${spacing} d-flex`}>
+    <div id='menu_main' className={`menu_sticky spacing_${spacing} d-flex`}>
       <div className='container m-auto'>
         <Spacer size='small' />
         <div className='row cols-2 menu_container'>
@@ -232,10 +232,11 @@ export function Slider ({ children, onClose, isOpen }) {
     const parentContainer = document.body
     const stepContainer = document.getElementById('step_main_container')
     if (isOpen) {
+      document.getElementById('menu_main').scrollIntoView()
       stepContainer.style.opacity = 0.4
       parentContainer.style.overflow = 'hidden'
     } else {
-      if(stepContainer) stepContainer.style.opacity = 1
+      if (stepContainer) stepContainer.style.opacity = 1
       parentContainer.style.overflow = 'scroll'
     }
   }, [isOpen])

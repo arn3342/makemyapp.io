@@ -19,6 +19,7 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
   const [currentData, setCurrentData] = useState()
   const [modalProps, setModalProps] = useState({
     isOpen: false,
+    parent: null,
     options: null
   })
 
@@ -50,25 +51,38 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
 
   function performShowModal (id) {
     const data = extractSubFeatures(id)
-    data && console.log('Data:', data)
-    data &&
+    data.subFeatures &&
       setModalProps({
         isOpen: true,
-        options: data
+        parent: data.parent,
+        options: data.subFeatures
       })
   }
   function performClose () {
-    setModalProps({
+    setModalProps(prevState => ({
+      ...prevState,
       isOpen: false
-    })
+    }))
   }
   return (
     <div>
       <Slider isOpen={modalProps.isOpen} onClose={() => performClose()}>
-        <FeatureSelector
-          options={modalProps.options}
-          onSubmit={() => performClose()}
-        />
+        {modalProps.parent !== null && (
+          <>
+            <Title
+              fontType='bold'
+              content={`${modalProps.parent.title} Features`}
+            />
+            <SubTitle
+              size='medium'
+              content={`Enrich your application with industry standard ${modalProps.parent.title} features`}
+            />
+            <FeatureSelector
+              options={modalProps.options}
+              onSubmit={() => performClose()}
+            />
+          </>
+        )}
       </Slider>
       {currentData && (
         <div className='theme_light' id='step_main_container'>

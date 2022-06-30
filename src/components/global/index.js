@@ -234,7 +234,7 @@ export function Slider ({ children, onClose, isOpen }) {
       stepContainer.style.opacity = 0.4
       parentContainer.style.overflow = 'hidden'
     } else {
-      stepContainer.style.opacity = 1
+      if(stepContainer) stepContainer.style.opacity = 1
       parentContainer.style.overflow = 'scroll'
     }
   }, [isOpen])

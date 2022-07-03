@@ -23,6 +23,7 @@ let finalData = {}
 const StepScreen = ({ stepIndex, allowSearch }) => {
   const { state } = useLocation()
   const [currentData, setCurrentData] = useState()
+  const [submitting, setSubmitting] = useState(false)
   const [modalProps, setModalProps] = useState({
     isOpen: false,
     parent: null,
@@ -41,7 +42,6 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
   }, [])
 
   function performSubmit (values) {
-    console.log('Master data:', finalData)
     constructStepData(values)
     if (currentStepIndex < 2) {
       let index = currentStepIndex + 1
@@ -49,8 +49,18 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
       setCurrentIndex(currentStepIndex + 1)
       setCurrentData(currentStepData)
     } else {
-      // console.log('Master data:', finalData)
+      setSubmitting(true)
+      setTimeout(() => {
+        finalise(finalData)
+      }, 1000)
     }
+  }
+
+  function finalise (data) {
+    StorageHelper.SaveItem(data, 'appData', true)
+    setTimeout(() => {
+      window.location = process.env.REACT_APP_ENGINE_URL
+    }, 1000)
   }
 
   function constructStepData (ids) {
@@ -67,7 +77,7 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
         data.features = ids
         break
     }
-    finalData = {...finalData, ...data}
+    finalData = { ...finalData, ...data }
   }
 
   function performShowModal (id) {
@@ -102,8 +112,7 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
         //   }
         //   return errors
         // }}
-        onSubmit={(values, { setSubmitting, resetForm }) => {
-          setSubmitting(true)
+        onSubmit={(values, { resetForm }) => {
           performSubmit(values.featureIds)
           resetForm()
         }}
@@ -184,6 +193,7 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
                       }}
                       icon={faAngleRight}
                       animateIcon
+                      isBusy={submitting}
                     />
                   </div>
                 </div>

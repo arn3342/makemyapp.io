@@ -15,6 +15,10 @@ import { Button, SimpleChoiceList } from '../components/form'
 import { extractFeatures, extractSubFeatures } from '../misc/featureExtractor'
 import './index.css'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import { StorageHelper } from '../data/storage'
+import { Formik, Field, Form } from 'formik'
+
+let finalData = {}
 
 const StepScreen = ({ stepIndex, allowSearch }) => {
   const { state } = useLocation()
@@ -36,19 +40,34 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
     setCurrentData(currentStepData)
   }, [])
 
-  function handleSubmit (selectedData) {
-    // Use selectedData to perform any other logic task
-    let index = currentStepIndex + 1
-    let currentStepData = index <= -1 ? appListing : masterData[index]
-    setCurrentIndex(currentStepIndex + 1)
-    setCurrentData(currentStepData)
+  function performSubmit (values) {
+    console.log('Master data:', finalData)
+    constructStepData(values)
+    if (currentStepIndex < 2) {
+      let index = currentStepIndex + 1
+      let currentStepData = index <= -1 ? appListing : masterData[index]
+      setCurrentIndex(currentStepIndex + 1)
+      setCurrentData(currentStepData)
+    } else {
+      // console.log('Master data:', finalData)
+    }
   }
 
-  function getFeatureById (id) {
-    const options = masterData[currentStepIndex].options.find(
-      item => item.id == id
-    )
-    return options
+  function constructStepData (ids) {
+    // performShowModal(ids[ids.length - 1])
+    let data = {}
+    switch (currentStepIndex) {
+      case 0:
+        data.platformTypes = ids
+        break
+      case 1:
+        data.interfaceTypes = ids
+        break
+      case 2:
+        data.features = ids
+        break
+    }
+    finalData = {...finalData, ...data}
   }
 
   function performShowModal (id) {
@@ -68,64 +87,112 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
   }
   return (
     <div>
-      <Slider isOpen={modalProps.isOpen} onClose={() => performClose()}>
-        {modalProps.parent !== null && (
+      <Formik
+        initialValues={{
+          featureIds: []
+        }}
+        // validate={values => {
+        //   const errors = {}
+        //   if (!values.email) {
+        //     errors.email = 'Required'
+        //   } else if (
+        //     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        //   ) {
+        //     errors.email = 'Invalid email address'
+        //   }
+        //   return errors
+        // }}
+        onSubmit={(values, { setSubmitting, resetForm }) => {
+          setSubmitting(true)
+          performSubmit(values.featureIds)
+          resetForm()
+        }}
+      >
+        {({
+          handleChange,
+          handleSubmit,
+          isSubmitting,
+          setFieldValue,
+          values
+        }) => (
           <>
-            <Title
-              fontType='bold'
-              content={`${modalProps.parent.title} Features.`}
-            />
-            <SubTitle
-              size='medium'
-              content={`Enrich your application with industry standard ${modalProps.parent.title} features`}
-            />
-            <Spacer/>
-            <FeatureSelector
-              options={modalProps.options}
-              onSubmit={() => performClose()}
-            />
+            <Slider isOpen={modalProps.isOpen} onClose={() => performClose()}>
+              {modalProps.parent !== null && (
+                <>
+                  <Title
+                    fontType='bold'
+                    content={`${modalProps.parent.title} Features.`}
+                  />
+                  <SubTitle
+                    size='medium'
+                    content={`Enrich your application with industry standard ${modalProps.parent.title} features`}
+                  />
+                  <Spacer />
+                  <FeatureSelector
+                    options={modalProps.options}
+                    onSubmit={ids => {
+                      // console.log('IDS are:', ids)
+                      setFieldValue('featureIds', [
+                        ...values.featureIds,
+                        ...ids
+                      ])
+                      performClose()
+                    }}
+                  />
+                </>
+              )}
+            </Slider>
+            {currentData && (
+              <div className='theme_light' id='step_main_container'>
+                <Title content={currentData.title} size='large-2' />
+                <Spacer />
+                <SubTitle content={currentData.description} size='large' />
+                <Spacer />
+
+                <SimpleChoiceList
+                  name='featureIds'
+                  data={currentData.options}
+                  allowSearch={currentStepIndex > 1}
+                  itemProps={{
+                    itemSize: currentStepIndex < 2 ? 'regular' : 'small',
+                    disableDeselect: currentStepIndex >= 2
+                  }}
+                  theme='light'
+                  onChoiceChange={ids => {
+                    if (currentStepIndex >= 2)
+                      performShowModal(ids[ids.length - 1])
+                    else setFieldValue('featureIds', ids)
+                  }}
+                />
+                <div
+                  className={`row d-flex ${currentStepIndex >= 2 &&
+                    'button_final'}`}
+                  style={{
+                    justifyContent: 'flex-start'
+                  }}
+                >
+                  <Spacer size='large' />
+                  <div className='col col-sm-2'>
+                    <Button
+                      label={`Continue ${
+                        currentStepIndex >= 2 ? 'To Builder' : ''
+                      }`}
+                      theme='dark'
+                      animateScale={true}
+                      onClick={() => {
+                        handleSubmit()
+                      }}
+                      icon={faAngleRight}
+                      animateIcon
+                    />
+                  </div>
+                </div>
+                <Spacer />
+              </div>
+            )}
           </>
         )}
-      </Slider>
-      {currentData && (
-        <div className='theme_light' id='step_main_container'>
-          <Title content={currentData.title} size='large-2' />
-          <Spacer />
-          <SubTitle content={currentData.description} size='large' />
-          <Spacer />
-          <SimpleChoiceList
-            data={currentData.options}
-            allowSearch={currentStepIndex > 2}
-            itemProps={{
-              itemSize: currentStepIndex < 3 ? 'regular' : 'small',
-              disableDeselect: currentStepIndex >= 3
-            }}
-            disableDeselect
-            // handleSubmit={selectedData => handleSubmit(selectedData)}
-            theme='light'
-            onChoiceChange={ids => performShowModal(ids[ids.length - 1])}
-          />
-          <div
-            className={`row d-flex ${currentStepIndex >= 3 && 'button_final'}`}
-            style={{
-              justifyContent: 'flex-start',
-            }}
-          >
-            <Spacer size='large' />
-            <div className='col col-sm-2'>
-              <Button
-                label={`Continue ${currentStepIndex >= 3 ? 'To Builder' : ''}`}
-                theme='dark'
-                animateScale={true}
-                onClick={handleSubmit}
-                icon={faAngleRight}
-                animateIcon
-              />
-            </div>
-          </div>
-          <Spacer/>
-        </div>
-      )}
+      </Formik>
     </div>
   )
 }

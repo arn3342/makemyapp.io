@@ -5,6 +5,7 @@ import { getRandomInteger } from '../../misc/logics'
 import { Card, Spacer, SubTitle, Title } from '../global'
 import IconParser from '../../misc/iconParser'
 import './index.css'
+import { uuid } from 'uuidv4'
 
 export const Button = ({
   label,
@@ -203,7 +204,7 @@ export const DropDown = ({
                   // key={index}
                   type='button'
                   id={getRandomInteger(9991, 878890)}
-                  key={value.id || getRandomInteger(10, 400)}
+                  key={value.id || index}
                 >
                   <SubTitle
                     className={`no_margin`}
@@ -446,6 +447,10 @@ export const SimpleChoiceList = ({
 }) => {
   const [choiceIDs, setChoiceIDs] = useState([])
 
+  useEffect(() => {
+    setChoiceIDs([])
+  }, [data])
+
   function performOnChoiceChange (selected, choiceId) {
     let ids = [...choiceIDs]
     if (selected) {
@@ -493,7 +498,7 @@ export const SimpleChoiceList = ({
             data={choice}
             {...itemProps}
             onSelect={selected => performOnChoiceChange(selected, choice.id)}
-            key={choice.id || getRandomInteger(20, 9899)}
+            key={choice.id || uuid()}
             disableSelect={disableSelect}
             selected={isSelected}
           />

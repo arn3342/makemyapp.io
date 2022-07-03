@@ -5,17 +5,17 @@
     "description": "Type of application do you want to build",
     "options": [
       {
-        "id": 1210,
+        "id": 12101,
         "title": "Web App",
         "description": "Suitable if you're planning to build a SaaS application, streaming service, goverment projects and others."
       },
       {
-        "id": 1211,
+        "id": 12102,
         "title": "Mobile App",
         "description": "Serve your customers with a native experience of your service on their devices, including games."
       },
       {
-        "id": 1212,
+        "id": 12103,
         "title": "Desktop App",
         "description": "Mostly used by enterprises, like CRM, ERP, CMS where clients can manage their data on their self-hosted system."
       }
@@ -27,35 +27,19 @@
     "description": "Domain area of your application will cover",
     "options": [
       {
-        "id": 99012321,
+        "id": 12111,
         "title": "Client Facing Interface",
-        "description": "direct interaction or communication with a customer and customers use to connect and engage with your business"
+        "description": "A client facing application for your customer to let them interect with your services or business."
       },
       {
-        "title": "Admin Interface (CRM/CMS",
-        "description": "Admin can control the entire application"
-      }
-    ]
-  },
-  {
-    "id": 1212,
-    "title": "Choose Client Facing Interface type",
-    "description": "Describe the interface type of your application",
-    "options": [
-      {
-        "id": 1212001,
-        "title": "Single-Page App (Recommended",
-        "description": "dynamically rewriting the current web page with new data from the web server instead of loading"
+        "id": 12112,
+        "title": "Admin Interface",
+        "description": "A dedicated admin panel for admins(typically you) to manage customer data and business information."
       },
       {
-        "id": 1212002,
-        "title": "Multi-Page App",
-        "description": "Multi-page Application is a web application consisting of a large number of pages completely refreshed every time when data changes on them"
-      },
-      {
-        "id": 1212003,
-        "title": "Progressive Web App",
-        "description": "Progressive Web Apps combine many of the advantages of native apps and the Web"
+        "id": 12113,
+        "title": "Super-Admin Interface",
+        "description": "Suitable super-admin panel allowing you to control/manage sub-admin data on a higher level."
       }
     ]
   },

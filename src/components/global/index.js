@@ -12,6 +12,7 @@ import {
 import { Button, SimpleChoice, SimpleChoiceList } from '../form'
 import { getRandomInteger } from '../../misc/logics'
 import { extractFeature } from '../../misc/featureExtractor'
+import { uuid } from 'uuidv4'
 
 export const Header = ({ spacing }) => {
   useEffect(() => {})
@@ -201,7 +202,7 @@ export const SliderModal = ({
               return (
                 <SimpleChoice
                   title={item.title}
-                  key={item.id || getRandomInteger(988, 12388)}
+                  key={item.id || uuid()}
                 />
               )
             })}
@@ -211,15 +212,12 @@ export const SliderModal = ({
             label='Add Features'
             theme='dark'
             animateScale={true}
-            canBeBusy
             onClick={() => handleSubmit(true)}
-            key={getRandomInteger(99, 88738)}
           />
           <Spacer />
           <Button
             label='Close'
             onClick={() => handleSubmit(false)}
-            key={getRandomInteger(99, 88738)}
           />
         </div>
       </div>
@@ -261,10 +259,10 @@ export function Slider ({ children, onClose, isOpen }) {
 export const FeatureSelector = ({ onSubmit, options, btnSubmitLabel }) => {
   const [selectedChoices, setSelectedChoices] = useState([])
   function handleSubmit () {
-    const features = selectedChoices.map(id => {
-      return extractFeature(id)
-    })
-    onSubmit && onSubmit(features)
+    // const features = selectedChoices.map(id => {
+    //   return extractFeature(id)
+    // })
+    onSubmit && onSubmit(selectedChoices)
   }
   return (
     options && (

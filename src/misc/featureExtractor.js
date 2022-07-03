@@ -1,7 +1,7 @@
 import FeatureList from '../assets/jsons/masterStep.json'
 
 export function extractFeatures () {
-  const parentFeatures = FeatureList[3].options
+  const parentFeatures = FeatureList[2].options
   let subFeatureList = []
   for (var i = 0; i < parentFeatures.length - 1; i++) {
     if (parentFeatures[i].options) {
@@ -22,7 +22,7 @@ export function extractFeatures () {
 }
 
 export function extractSubFeatures (parentId) {
-  const parentFeature = FeatureList[3].options?.find(x => x.id === parentId)
+  const parentFeature = FeatureList[2].options?.find(x => x.id === parentId)
   const subFeatures = parentFeature?.options
   const parent = { ...parentFeature }
   try {
@@ -39,5 +39,5 @@ export function extractFeature (featureId) {
 }
 
 export function extractFeaturesAsIs () {
-  return FeatureList[3].options
+  return FeatureList[2].options
 }

@@ -72,8 +72,8 @@ const StepScreen = ({ stepIndex }) => {
 
     const database = getDatabase(firebaseApp)
     const projectRef = ref(database, 'projectMeta/')
-    const projectKey = push(projectRef, StorageHelper.GetItem('appData')).then(
-      result => (window.location = `${process.env.REACT_APP_ENGINE_URL}/welcomeProject/${result.key}`)
+    push(projectRef, StorageHelper.GetItem('appData')).then(
+      result => (window.location = `${process.env.REACT_APP_ENGINE_URL}welcomeProject/${result.key}`)
     )
   }
 

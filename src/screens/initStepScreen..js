@@ -2,17 +2,14 @@ import React, { useState } from 'react'
 import { Title, SubTitle, Spacer } from '../components/global/'
 import { DropDown, Input, Button } from '../components/form'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
-import { SimpleChoiceList } from '../components/form'
-import { Player, Controls } from '@lottiefiles/react-lottie-player'
-import SplashAnim from '../assets/gifs/step_1.json'
+import { Player } from '@lottiefiles/react-lottie-player'
 import { useNavigate } from 'react-router-dom'
 import appTypes from '../assets/jsons/appTypes.json'
 import buildingAnim from '../assets/gifs/building.json'
-import phoneAnim from '../assets/gifs/phone.json'
 import { StorageHelper } from '../data/storage'
 import { Formik } from 'formik'
 
-const InitStepScreen = ({}) => {
+const InitStepScreen = () => {
   const [hasSimilarApps, setHasSimilarApps] = useState(false)
   const navigate = useNavigate()
 

@@ -14,6 +14,7 @@
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "5.2.0-beta1",
+    "cross-domain-storage": "^2.0.7",
     "formik": "^2.2.9",
     "localstorage": "^1.0.1",
     "react": "^18.1.0",

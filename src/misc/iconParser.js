@@ -2,50 +2,24 @@ import React from 'react'
 import {
   BsCart4,
   BsChatRightDots,
-  BsCodeSlash,
   BsCreditCard,
   BsQuestion,
   BsShareFill
 } from 'react-icons/bs'
+import { SiGoogleanalytics } from 'react-icons/si'
 import {
-  AiFillAndroid,
-  AiOutlineDesktop,
-  AiOutlineCloudServer
-} from 'react-icons/ai'
-import { SiAppstore, SiGoogleanalytics, SiIos, SiZapier } from 'react-icons/si'
-import { CgWebsite, CgFacebook, CgInstagram } from 'react-icons/cg'
-import { TiGroupOutline } from 'react-icons/ti'
-import {
-  MdSpaceDashboard,
-  MdOutlineFeaturedPlayList,
-  MdFeaturedPlayList,
   MdOutlineAddLocation
 } from 'react-icons/md'
 import { GoSettings } from 'react-icons/go'
-import { TbForms, TbListDetails } from 'react-icons/tb'
-import {
-  FcBusinessman,
-  FcConferenceCall,
-  FcMoneyTransfer,
-  FcNews,
-  FcReading,
-  FcTimeline,
-  FcTodoList
-} from 'react-icons/fc'
-import { RiAdvertisementLine, RiGroupLine, RiTeamLine } from 'react-icons/ri'
-import { BiGitRepoForked, BiCodeAlt, BiServer } from 'react-icons/bi'
+import { TbForms } from 'react-icons/tb'
+import { RiAdvertisementLine, RiGroupLine } from 'react-icons/ri'
 import {
   FaApplePay,
-  FaCode,
-  FaReact,
   FaUserEdit,
   FaWalking
 } from 'react-icons/fa'
-import { VscDebugAlt, VscSymbolMisc } from 'react-icons/vsc'
-import { FiGitBranch, FiShoppingCart } from 'react-icons/fi'
+import { VscSymbolMisc } from 'react-icons/vsc'
 import {
-  IoMdBrush,
-  IoMdColorPalette,
   IoMdColorWand,
   IoMdNotifications
 } from 'react-icons/io'

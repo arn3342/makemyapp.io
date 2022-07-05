@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import masterData from '../assets/jsons/masterStep.json'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import appListing from '../assets/jsons/appListing.json'
 import {
   FeatureSelector,
   Slider,
-  SliderModal,
   Spacer,
   SubTitle,
   Title
 } from '../components/global'
-import { filterData } from '../misc/logics'
 import { Button, SimpleChoiceList } from '../components/form'
-import { extractFeatures, extractSubFeatures } from '../misc/featureExtractor'
+import { extractSubFeatures } from '../misc/featureExtractor'
 import './index.css'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { StorageHelper } from '../data/storage'
-import { Formik, Field, Form } from 'formik'
+import { Formik } from 'formik'
 
 let finalData = {}
 
-const StepScreen = ({ stepIndex, allowSearch }) => {
+const StepScreen = ({ stepIndex }) => {
   const { state } = useLocation()
   const [currentData, setCurrentData] = useState()
   const [submitting, setSubmitting] = useState(false)
@@ -30,7 +28,6 @@ const StepScreen = ({ stepIndex, allowSearch }) => {
     options: null
   })
 
-  const navigate = useNavigate()
   const [currentStepIndex, setCurrentIndex] = useState(
     stepIndex || state.stepIndex
   )

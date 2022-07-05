@@ -15,6 +15,8 @@ import './index.css'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { StorageHelper } from '../data/storage'
 import { Formik } from 'formik'
+import { initializeApp } from 'firebase/app'
+import { getDatabase, ref, set, push } from 'firebase/database'
 
 let finalData = {}
 
@@ -55,9 +57,24 @@ const StepScreen = ({ stepIndex }) => {
 
   function finalise (data) {
     StorageHelper.SaveItem(data, 'appData', true)
-    setTimeout(() => {
-      window.location = process.env.REACT_APP_ENGINE_URL
-    }, 1000)
+
+    const firebaseConfig = {
+      apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+      authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+      databaseURL: process.env.REACT_APP_FIREBASE_DB_URL,
+      projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+      storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+      appId: process.env.REACT_APP_FIREBASE_APP_ID
+    }
+
+    // Initialize Firebase
+    const firebaseApp = initializeApp(firebaseConfig)
+
+    const database = getDatabase(firebaseApp)
+    const projectRef = ref(database, 'projectMeta/')
+    const projectKey = push(projectRef, StorageHelper.GetItem('appData')).then(
+      result => (window.location = `${process.env.REACT_APP_ENGINE_URL}/welcomeProject/${result.key}`)
+    )
   }
 
   function constructStepData (ids) {

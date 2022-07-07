@@ -29,17 +29,34 @@
       {
         "id": 12111,
         "title": "Client Facing Interface",
-        "description": "A client facing application for your customer to let them interect with your services or business."
+        "description": "direct interaction or communication with a customer and customers use to connect and engage with your business"
       },
       {
         "id": 12112,
-        "title": "Admin Interface",
-        "description": "A dedicated admin panel for admins(typically you) to manage customer data and business information."
+        "title": "Admin Interface (CRM/CMS",
+        "description": "Admin can control the entire application"
+      }
+    ]
+  },
+  {
+    "id": 1212,
+    "title": "Choose Client Facing Interface type",
+    "description": "Describe the interface type of your application",
+    "options": [
+      {
+        "id": 1212001,
+        "title": "Single-Page App (Recommended",
+        "description": "dynamically rewriting the current web page with new data from the web server instead of loading"
       },
       {
-        "id": 12113,
-        "title": "Super-Admin Interface",
-        "description": "Suitable super-admin panel allowing you to control/manage sub-admin data on a higher level."
+        "id": 1212002,
+        "title": "Multi-Page App",
+        "description": "Multi-page Application is a web application consisting of a large number of pages completely refreshed every time when data changes on them"
+      },
+      {
+        "id": 1212003,
+        "title": "Progressive Web App",
+        "description": "Progressive Web Apps combine many of the advantages of native apps and the Web"
       }
     ]
   },
@@ -55,13 +72,13 @@
         "options": [
           {
             "id": 100301,
-            "title": "via Email",
+            "title": "Email & Password",
             "description": "Allow users to sign-up or sign-in to your platform using their email",
             "estDevTime": 2
           },
           {
             "id": 100302,
-            "title": "via Phone",
+            "title": "Phone Number",
             "description": "Allow users to sign-up or sign-in to your platform using their phone",
             "estDevTime": 2
           },
@@ -85,7 +102,7 @@
           },
           {
             "id": 100306,
-            "title": "Username",
+            "title": "Username & Password",
             "description": "Allow users to create their unique username",
             "estDevTime": 2
           },
@@ -97,13 +114,13 @@
           },
           {
             "id": 100308,
-            "title": "Password",
+            "title": "Generate Password",
             "description": "Generate strong password that adheres to the platform's requirement",
             "estDevTime": 2
           },
           {
             "id": 100309,
-            "title": "Password reset",
+            "title": "Password Reset",
             "description": "Allow users to recover their password in case they forget",
             "estDevTime": 2
           },
@@ -115,8 +132,8 @@
           },
           {
             "id": 1003011,
-            "title": "Country selection drop-down list",
-            "description": "Allow users to select their country",
+            "title": "Country Selection",
+            "description": "Allow users to select their country from a list.",
             "estDevTime": 2
           },
           {

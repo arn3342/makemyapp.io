@@ -73,13 +73,23 @@ const StepScreen = ({ stepIndex }) => {
     const database = getDatabase(firebaseApp)
     const projectRef = ref(database, 'projectMeta/')
     push(projectRef, StorageHelper.GetItem('appData')).then(
-      result => (window.location = `${process.env.REACT_APP_ENGINE_URL}welcomeProject/${result.key}`)
+      result =>
+        (window.location = `${process.env.REACT_APP_ENGINE_URL}welcomeProject/${result.key}`)
     )
   }
 
   function constructStepData (ids) {
     // performShowModal(ids[ids.length - 1])
-    let data = {}
+    const buildPhases = {
+      features: [],
+      roadmaps: []
+    }
+    let data = {
+      buildPhases: {
+        mvp: { ...buildPhases },
+        v1: { ...buildPhases }
+      }
+    }
     switch (currentStepIndex) {
       case 0:
         data.platformTypes = ids
@@ -88,7 +98,7 @@ const StepScreen = ({ stepIndex }) => {
         data.interfaceTypes = ids
         break
       case 2:
-        data.features = ids
+        data.buildPhases.mvp.features = ids
         break
     }
     finalData = { ...finalData, ...data }

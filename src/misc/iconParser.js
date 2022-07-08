@@ -1,31 +1,25 @@
 import React from 'react'
 import {
+  BsAppIndicator,
   BsCart4,
   BsChatRightDots,
   BsCreditCard,
+  BsGlobe,
   BsQuestion,
   BsShareFill
 } from 'react-icons/bs'
 import { SiGoogleanalytics } from 'react-icons/si'
-import {
-  MdOutlineAddLocation
-} from 'react-icons/md'
+import { MdOutlineAddLocation, MdOutlineAdminPanelSettings } from 'react-icons/md'
 import { GoSettings } from 'react-icons/go'
-import { TbForms } from 'react-icons/tb'
-import { RiAdvertisementLine, RiGroupLine } from 'react-icons/ri'
-import {
-  FaApplePay,
-  FaUserEdit,
-  FaWalking
-} from 'react-icons/fa'
+import { TbDeviceDesktopAnalytics, TbForms } from 'react-icons/tb'
+import { RiAdvertisementLine, RiGroupLine, RiUserSettingsLine } from 'react-icons/ri'
+import { FaApplePay, FaUserEdit, FaWalking } from 'react-icons/fa'
 import { VscSymbolMisc } from 'react-icons/vsc'
-import {
-  IoMdColorWand,
-  IoMdNotifications
-} from 'react-icons/io'
+import { IoMdColorWand, IoMdNotifications } from 'react-icons/io'
+import { GrUserAdmin, GrUserSettings } from 'react-icons/gr'
 
 const IconParser = ({ itemId, size }) => {
-  const defSize = 18
+  const defSize = size || 18
   let icon = <BsQuestion fontSize={size || 20} />
   // console.log(itemId)
   switch (itemId) {
@@ -77,6 +71,24 @@ const IconParser = ({ itemId, size }) => {
       break
     case 10045:
       icon = <VscSymbolMisc size={defSize} />
+      break
+    //#endregion
+
+    //#region Step Icons
+    case 12101:
+      icon = <BsGlobe size={defSize} />
+      break
+    case 12102:
+      icon = <BsAppIndicator size={defSize} />
+      break
+    case 12103:
+      icon = <TbDeviceDesktopAnalytics size={defSize} />
+      break
+    case 12111:
+      icon = <RiUserSettingsLine size={defSize} />
+      break
+    case 12112:
+      icon = <MdOutlineAdminPanelSettings size={defSize} />
       break
     //#endregion
     default:

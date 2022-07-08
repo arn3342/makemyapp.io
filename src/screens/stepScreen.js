@@ -76,7 +76,7 @@ const StepScreen = ({ stepIndex }) => {
       if(!process.env.NODE_ENV || process.env.NODE_ENV === 'development'){
         return process.env.REACT_APP_ENGINE_URL_DEV
       } else {
-        return REACT_APP_ENGINE_URL
+        return process.env.REACT_APP_ENGINE_URL
       }
     }
     push(projectRef, StorageHelper.GetItem('appData')).then(

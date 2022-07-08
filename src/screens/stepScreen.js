@@ -72,9 +72,16 @@ const StepScreen = ({ stepIndex }) => {
 
     const database = getDatabase(firebaseApp)
     const projectRef = ref(database, 'projectMeta/')
+    const siteUrl = () => {
+      if(!process.env.NODE_ENV || process.env.NODE_ENV === 'development'){
+        return process.env.REACT_APP_ENGINE_URL_DEV
+      } else {
+        return REACT_APP_ENGINE_URL
+      }
+    }
     push(projectRef, StorageHelper.GetItem('appData')).then(
       result =>
-        (window.location = `${process.env.REACT_APP_ENGINE_URL}welcomeProject/${result.key}`)
+        (window.location = `${siteUrl()}welcomeProject/${result.key}`)
     )
   }
 
